@@ -1,3 +1,11 @@
 body{
+   
+}
+.row {
     background-color: red;
+    border: 1rem solid black;
+}
+.grid{
+    background-color: blue;
+    border: 1px solid black;
 }
