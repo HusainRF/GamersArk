@@ -1,11 +1,50 @@
+
 body{
    
 }
+
 .row {
+    /* can be removed */
     background-color: red;
-    border: 1rem solid black;
+    border: 0.1rem solid black;
 }
+
 .grid{
+    /* can be removed */
     background-color: blue;
-    border: 1px solid black;
+    border: 0 solid black;
 }
+
+.matrix{
+    /* don't  removed */
+    display: flex ;
+    justify-content: center;
+    background-color: white;
+}
+
+td{
+    /* don't  removed */
+    padding-top:  0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left  : 1rem;
+    padding-right: 1rem;
+    font-size: 20px;
+    border: 2px solid black;
+}
+
+.info{
+    
+    /* don't  removed */
+    margin-top: 0.5rem;
+    float: left;
+    color: aliceblue;
+}
+
+.play-btn{
+    /* don't  removed */
+    float: center;
+}
+
+
+
+
