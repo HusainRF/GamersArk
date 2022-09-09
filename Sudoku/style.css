@@ -3,16 +3,23 @@ body{
    
 }
 
+/* nav-bar */
+
+.settings{
+    font-size: 1.5rem;
+    margin-top: 10%;
+}
+
 .row {
     /* can be removed */
     background-color: red;
-    border: 0.1rem solid black;
+    /* border: 0.1rem solid black; */
 }
 
 .grid{
     /* can be removed */
     background-color: blue;
-    border: 0 solid black;
+    /* border: 0 solid black; */
 }
 
 .matrix{
@@ -22,6 +29,11 @@ body{
     background-color: white;
 }
 
+/* table
+table,td{
+    border: 1px solid green; 
+} */
+
 td{
     /* don't  removed */
     padding-top:  0.5rem;
@@ -29,7 +41,6 @@ td{
     padding-left  : 1rem;
     padding-right: 1rem;
     font-size: 20px;
-    border: 2px solid black;
 }
 
 .info{
