@@ -10,17 +10,26 @@ body{
     margin-top: 10%;
 }
 
+.navbar-brand{
+    font-family: 'Lobster', cursive;
+    font-size: 25px !important;
+    text-shadow: 3px 3px 3px rgb(202, 43, 216);
+}
+
+.heading-Sudoku{
+    font-family: 'Lobster', cursive;
+    font-size: 45px;
+    color: black;
+    text-shadow: 3px 3px 3px rgb(202, 43, 216);
+}
+
 .row {
     /* can be removed */
-    background-color: red;
+    background-color: white;
     /* border: 0.1rem solid black; */
 }
 
-.grid{
-    /* can be removed */
-    background-color: pink;
-    /* border: 0 solid black; */
-}
+/* table */
 
 .matrix{
     /* don't  removed */
@@ -42,8 +51,19 @@ td{
     padding-left  : 1rem;
     padding-right: 1rem;
     font-size: 20px;
+    /* width: 35px; */
     border-width:3px ;
 }
+
+input{
+    width: 30px;
+    border: 0px;
+    padding: 0px;
+
+}
+
+/* table ends here */
+
 
 .info{
     
@@ -52,6 +72,7 @@ td{
     float: left;
     color: aliceblue;
 }
+
 
 .play-btn{
     /* don't  removed */
