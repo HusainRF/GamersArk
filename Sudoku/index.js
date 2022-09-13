@@ -1,4 +1,6 @@
-// initailzation of matrix ended xx---xx
+// <!-----------------------------------------------------------------------/>
+// initailzation of matrix started xx---xx
+
 var trail = new Array(9);
 for (var i = 0; i < trail.length; i++) {
     trail[i] = new Array(9);
@@ -45,14 +47,18 @@ for(let i= 0;i < 9 ; i ++){
     console.log(user[i]);
 }
 // initailzation of matrix ended xx---xx
+// <!-----------------------------------------------------------------------/>
 
 
+
+
+// <!-----------------------------------------------------------------------/>
 // genrating rand no. for dipalying
 let level = 0;
 // when level = 0 dificulty => easy
 // when level = 1 dificulty => medium
 // when level = 2 dificulty => hard
-let cnt_display = 30;
+ let cnt_display = 30;
 function hard1(event) {
     level = 2;
     cnt_display = 30 + Math.floor((Math.random() * 10)); // genrate rand value 30-40 
@@ -72,34 +78,37 @@ function medium1() {
 
 document.getElementById('easy').addEventListener('click', easy1);
 document.getElementById('medium').addEventListener('click', medium1);
-let var_hard = document.getElementById('hard').addEventListener('click', hard1);
-// var_hard.addEventListener("click"
+document.getElementById('hard').addEventListener('click', hard1);
+
+// generated rand no. for dipalying
+// <!-----------------------------------------------------------------------/>
 
 
-// genrating rand no. for dipalying
 
+// <!-----------------------------------------------------------------------/>
+// creating a matrix
 
-// creating a matrix 
 let table = document.createElement('table');
-let tbody = document.createElement('tbody');
-table.appendChild(tbody);
 // table.setAttribute("style","border:1px solid #D6CDA4" )
 
 // Adding the entire table into the matrix class
 
 document.querySelector('.matrix').appendChild(table);
+let tbody = document.createElement('tbody');
+table.appendChild(tbody);
 
 function checkInput(ob) {
     //to check input should be 1-9
     var invalidChars = /[^1-9]/gi
     if (invalidChars.test(ob.value)) {
+        alert("only numerical");
         ob.value = ob.value.replace(invalidChars, "");
     }
 };
 
 function create_table() {
     // function declation (this is the main part which creates the table of size(9*9) )
-
+    console.log("creating table");
     for (i = 1; i <= 9; i++) {
 
         var row = document.createElement("tr");
@@ -108,7 +117,8 @@ function create_table() {
             cell = document.createElement("td");
             // inp = it stores the user input when the feild is empty
             let inp = '<input class="inp" maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" autocomplete="off"/>';
-
+           cell.setAttribute("id",(i-1)*9+j);
+           
             if (checker[i-1][j-1]==='*') {
                 // input for empty feilds...
                 cell.innerHTML = inp;
@@ -135,7 +145,14 @@ function create_table() {
 
 }
 
+// generated matrix
+// <!-----------------------------------------------------------------------/>
+
+
+
 // matrix called and printed to a webpage (styling is still pendding....)
+
+
 
 // calling a matrix(table , this will )
 document.querySelector(".matrix").onload = create_table();
