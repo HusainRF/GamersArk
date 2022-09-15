@@ -7,8 +7,8 @@ for (var i = 0; i < trail.length; i++) {
 
 }
 
-for(let i= 0;i < 9 ; i ++){
-    for(let j = 0 ;j <9 ;j++){
+for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
         trail[i][j] = 1;
     }
     console.log(trail[i]);
@@ -21,28 +21,28 @@ for (var i = 0; i < checker.length; i++) {
 
 }
 
-for(let i= 0;i < 9 ; i ++){
-    for(let j = 0 ;j <9 ;j++){
-        if(i === j)
-          checker[i][j] = "*";
-         else 
-           checker[i][j] = trail[i][j];
-        }
-        console.log(checker[i]);
+for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+        if (i === j)
+            checker[i][j] = "*";
+        else
+            checker[i][j] = trail[i][j];
     }
-    
-    var user = new Array(9);
-    for (var i = 0; i < user.length; i++) {
+    console.log(checker[i]);
+}
+
+var user = new Array(9);
+for (var i = 0; i < user.length; i++) {
     user[i] = new Array(9);
 
 }
 
-for(let i= 0;i < 9 ; i ++){
-    for(let j = 0 ;j <9 ;j++){
-        if(i == j)
-          user[i][j] = '*';
-        else 
-          user[i][j] = trail[i][j];
+for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+        if (i == j)
+            user[i][j] = '*';
+        else
+            user[i][j] = trail[i][j];
     }
     console.log(user[i]);
 }
@@ -58,7 +58,7 @@ let level = 0;
 // when level = 0 dificulty => easy
 // when level = 1 dificulty => medium
 // when level = 2 dificulty => hard
- let cnt_display = 30;
+let cnt_display = 30;
 function hard1(event) {
     level = 2;
     cnt_display = 30 + Math.floor((Math.random() * 10)); // genrate rand value 30-40 
@@ -117,15 +117,15 @@ function create_table() {
             cell = document.createElement("td");
             // inp = it stores the user input when the feild is empty
             let inp = '<input class="inp" maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" autocomplete="off"/>';
-           cell.setAttribute("id",(i-1)*9+j);
-           
-            if (checker[i-1][j-1]==='*') {
+            cell.setAttribute("id", (i - 1) * 9 + j);
+
+            if (checker[i - 1][j - 1] === '*') {
                 // input for empty feilds...
                 cell.innerHTML = inp;
             }
             else {
                 // fixed value for rest of cell....
-                cell.innerHTML = trail[i-1][j-1];
+                cell.innerHTML = trail[i - 1][j - 1];
             }
 
             if (i % 3 == 0 && j % 3 == 0)
@@ -154,7 +154,89 @@ function create_table() {
 
 
 
+
+
+
+// Countdown-Timer started
+// <!-----------------------------------------------------------------------/>
+function f1()
+{
+    countdown("timer2",10,0);
+}
+var pause = true;
+function countdown(elementName, minutes, seconds) {
+    var element, endTime, hours, mins, msLeft, time;
+    var counter = setInterval(updateTimer, 1000);
+    element = document.getElementById(elementName);
+    endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
+   var temp=0;
+    function twoDigits(n) {
+        return (n <= 9 ? "0" + n : n);
+    }
+
+    function updateTimer() {
+        if (pause != false) {
+            msLeft = endTime +temp- (+new Date);
+            temp=0;
+            if (msLeft < 1000) {
+                element.innerHTML = "Time is up!";
+                clearInterval(updateTimer);
+            } else {
+                time = new Date(msLeft);
+                hours = time.getUTCHours();
+                mins = time.getUTCMinutes();
+                element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds());
+                // setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
+            }
+        }
+        else
+        {
+            temp+=1000;
+        }
+
+    }  
+}
+document.getElementById('pause').addEventListener('click', function () {
+    pause = true;
+});
+
+document.getElementById('resume').addEventListener('click', function () {
+    pause = false;
+});
+// countdown( "ten-countdown", 10, 0 );
+
+// var timersCount = 0;
+// var pause = false; //is timer paused
+
+
+
+// function countTimers() {
+//     timersCount++;
+
+//     var count = 26;
+//     var counter = setInterval(timer, 1000);
+
+//     function timer() {
+//         if (!pause) { //do something if not paused
+//             count = count - 1;
+//             if (count < 0) {
+//                 clearInterval(counter);
+//                 setTimeout(countTimers, 5000); //start count from 26 again
+//                 return;
+//             }
+
+//             document.getElementById("timer").innerHTML = count;
+//         }
+//     }
+
+//     document.getElementById("countTimers").innerHTML = timersCount;
+// }
+
+
+
+// Countdown-Timer ended
+// <!-----------------------------------------------------------------------/>
+
 // calling a matrix(table , this will )
 document.querySelector(".matrix").onload = create_table();
-
-
+// matrix called
