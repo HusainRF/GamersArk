@@ -127,7 +127,9 @@ function create_table() {
                 cell.classList.add("fxd");
                 cell.innerHTML = trail[i - 1][j - 1];
             }
-
+            else {
+                cell.innerHTML = inp;
+            }
             if (i % 3 == 0 && j % 3 == 0)
                 cell.setAttribute("style", "border-right:3px solid black ;border-bottom:3px solid black;");
             else if (i % 3 == 0 && j % 3 != 0)
