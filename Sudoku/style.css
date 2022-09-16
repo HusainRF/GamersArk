@@ -45,21 +45,33 @@ body{
 }
 
 td{
-    /* don't  removed */
-    padding-top:  0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left  : 1rem;
-    padding-right: 1rem;
+    width: 2rem;
+    height: 2rem;
     font-size: 20px;
+}
+
+.fxd{  
+    margin: 0;
+    padding: 0;
     /* width: 35px; */
+    font-weight: 650;
     border-width:3px ;
 }
 
 input{
-    width: 30px;
+    width: 2rem;
+    height: 2rem;
     border: 0px;
-    padding: 0px;
+    font-size: 20px;
+    text-align: center;
+    /* padding-left: 2px; */
+    font-weight: 650;
+    color: blue;
+    margin: 0px;
 
+}
+#kr{
+    background-color: yellowgreen;
 }
 
 /* table ends here */
