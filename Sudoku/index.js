@@ -11,7 +11,7 @@ for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
         trail[i][j] = 1;
     }
-    console.log(trail[i]);
+    // console.log(trail[i]);
 }
 
 
@@ -28,7 +28,7 @@ for (let i = 0; i < 9; i++) {
         else
             checker[i][j] = trail[i][j];
     }
-    console.log(checker[i]);
+    // console.log(checker[i]);
 }
 
 var user = new Array(9);
@@ -44,7 +44,7 @@ for (let i = 0; i < 9; i++) {
         else
             user[i][j] = trail[i][j];
     }
-    console.log(user[i]);
+    // console.log(user[i]);
 }
 // initailzation of matrix ended xx---xx
 // <!-----------------------------------------------------------------------/>
@@ -62,18 +62,18 @@ let cnt_display = 30;
 function hard1(event) {
     level = 2;
     cnt_display = 30 + Math.floor((Math.random() * 10)); // genrate rand value 30-40 
-    console.log(cnt_display);
+    // console.log(cnt_display);
 }
 
 function easy1() {
     level = 0;
     cnt_display = 50 + Math.floor((Math.random() * 10)); // genrate rand value 50-60
-    console.log(cnt_display);
+    // console.log(cnt_display);
 }
 function medium1() {
     level = 1;
     cnt_display = 40 + Math.floor((Math.random() * 10)); // genrate rand value 40-50
-    console.log(cnt_display);
+    // console.log(cnt_display);
 }
 
 document.getElementById('easy').addEventListener('click', easy1);
@@ -108,7 +108,7 @@ function checkInput(ob) {
 
 function create_table() {
     // function declation (this is the main part which creates the table of size(9*9) )
-    console.log("creating table");
+    // console.log("creating table");
     for (i = 1; i <= 9; i++) {
 
         var row = document.createElement("tr");
@@ -116,16 +116,17 @@ function create_table() {
         for (j = 1; j <= 9; j++) {
             cell = document.createElement("td");
             // inp = it stores the user input when the feild is empty
-            let inp = '<input class="inp" maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" autocomplete="off"/>';
-            
-            cell.setAttribute("id", (i - 1) * 9 + j);
 
-            if (checker[i - 1][j - 1] === '*') {
-                // input for empty feilds...
-                cell.innerHTML = inp;
-            }
-            else {
+            
+            let inp = '<input  maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" autocomplete="off"/>';
+            
+            let myid  = (i - 1) * 9 + j;
+
+            cell.setAttribute("id", (i - 1) * 9 + j);
+            
+            if(checker[i - 1][j - 1] != '*'){
                 // fixed value for rest of cell....
+                cell.classList.add("fxd");
                 cell.innerHTML = trail[i - 1][j - 1];
             }
 
