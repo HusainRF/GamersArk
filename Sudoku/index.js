@@ -119,10 +119,12 @@ function create_table() {
             
             let inp = '<input  maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" autocomplete="off"/>';
             
-            let myid  = toString(i -1) + toString(j-1);
-            let myid2  =  toString(i -1) + toString(j-1);
-            
-            cell.setAttribute("id", myid);
+            let num = (i)*10 + (j);
+            let cell_id  = num.toString();
+                cell_id  += "r";
+
+            let input_id = num.toString();
+            cell.id += cell_id ;
             
             if(checker[i - 1][j - 1] != '*'){
                 // fixed value for rest of cell....
@@ -131,7 +133,7 @@ function create_table() {
             }
             else {
                 cell.innerHTML = inp;
-                $("#myid input").attr("id" , "myid2" );
+                $("td input").attr("id" , input_id );
             }
             
 
@@ -155,6 +157,7 @@ $("input").keyup(function(){
     // $("input").css("background-color", "pink");
     alert( "Handler for .click() called." );
   });
+
 // $("input").click( function(){
 //     alert( "Handler for .click() called." );
 // });
