@@ -119,14 +119,21 @@ function create_table() {
             
             let inp = '<input  maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" autocomplete="off"/>';
             
-            let myid  = (i - 1) * 9 + j;
-            cell.setAttribute("id", (i - 1) * 9 + j);
+            let myid  = toString(i -1) + toString(j-1);
+            let myid2  =  toString(i -1) + toString(j-1);
+            
+            cell.setAttribute("id", myid);
             
             if(checker[i - 1][j - 1] != '*'){
                 // fixed value for rest of cell....
                 cell.classList.add("fxd");
                 cell.innerHTML = trail[i - 1][j - 1];
             }
+            else {
+                cell.innerHTML = inp;
+                $("#myid input").attr("id" , "myid2" );
+            }
+            
 
             if (i % 3 == 0 && j % 3 == 0)
                 cell.setAttribute("style", "border-right:3px solid black ;border-bottom:3px solid black;");
@@ -144,6 +151,13 @@ function create_table() {
     }
 
 }
+$("input").keyup(function(){
+    // $("input").css("background-color", "pink");
+    alert( "Handler for .click() called." );
+  });
+// $("input").click( function(){
+//     alert( "Handler for .click() called." );
+// });
 
 // generated matrix
 // <!-----------------------------------------------------------------------/>
