@@ -1,11 +1,96 @@
+
 body{
    
 }
+
+/* nav-bar */
+
+.settings{
+    font-size: 1.5rem;
+    margin-top: 10%;
+}
+
+.navbar-brand{
+    font-family: 'Lobster', cursive;
+    font-size: 25px !important;
+    text-shadow: 3px 3px 3px rgb(202, 43, 216);
+}
+
+.heading-Sudoku{
+    font-family: 'Lobster', cursive;
+    font-size: 45px;
+    color: black;
+    text-shadow: 3px 3px 3px rgb(202, 43, 216);
+}
+
 .row {
-    background-color: red;
-    border: 1rem solid black;
+    /* can be removed */
+    background-color: white;
+    /* border: 0.1rem solid black; */
 }
-.grid{
-    background-color: blue;
-    border: 1px solid black;
+
+/* table */
+
+.matrix{
+    /* don't  removed */
+    display: flex ;
+    justify-content: center;
+    background-color: white;
 }
+
+/* table */
+ table{
+    margin: 4rem;
+    border: 3px solid black; 
+}
+
+td{
+    width: 2rem;
+    height: 2rem;
+    font-size: 20px;
+}
+
+.fxd{  
+    margin: 0;
+    padding: 0;
+    /* width: 35px; */
+    font-weight: 650;
+    border-width:3px ;
+}
+
+input{
+    width: 2rem;
+    height: 2rem;
+    border: 0px;
+    font-size: 20px;
+    text-align: center;
+    /* padding-left: 2px; */
+    font-weight: 650;
+    color: blue;
+    margin: 0px;
+
+}
+#kr{
+    background-color: yellowgreen;
+}
+
+/* table ends here */
+
+
+.info{
+    
+    /* don't  removed */
+    margin-top: 0.5rem;
+    float: left;
+    color: aliceblue;
+}
+
+
+.play-btn{
+    /* don't  removed */
+    float: center;
+}
+
+
+
+
