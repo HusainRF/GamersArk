@@ -5,7 +5,7 @@ var gamePattern = [];
 var userClickedPattern = [];
 
 
-$(".btn").click(function (){
+$(".bttn").click(function (){
     var userChosenColour = $(this).attr("id");
     userClickedPattern.push(userChosenColour);
     playSound(userChosenColour);
