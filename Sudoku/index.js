@@ -117,13 +117,16 @@ function create_table() {
             cell = document.createElement("td");
             // inp = it stores the user input when the feild is empty
             
-            let inp = '<input  maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" autocomplete="off"/>';
-            
             let num = (i)*10 + (j);
+            let input_id = num.toString();
+            let inp1 = '<input id = "' + input_id   ;
+            let inp2 = ' "maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" autocomplete="off"/>';
+            let inp = inp1 + inp2; 
+            
+            
             let cell_id  = num.toString();
                 cell_id  += "r";
 
-            let input_id = num.toString();
             cell.id += cell_id ;
             
             if(checker[i - 1][j - 1] != '*'){
@@ -133,7 +136,8 @@ function create_table() {
             }
             else {
                 cell.innerHTML = inp;
-                $("td input").attr("id" , input_id );
+                
+                // document.querySelector("#cell_id input").style.color= "red";
             }
             
 
@@ -153,10 +157,23 @@ function create_table() {
     }
 
 }
-$("input").keyup(function(){
-    // $("input").css("background-color", "pink");
-    alert( "Handler for .click() called." );
+
+$("input").keypress(function(event){
+    alert(String.fromCharCode(event.which)); 
   });
+
+// $(input).keyup(function(event) {
+//     alert( event.key);
+// });
+
+
+
+
+
+  //experiment
+
+
+  //end
 
 // $("input").click( function(){
 //     alert( "Handler for .click() called." );
