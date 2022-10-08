@@ -1,5 +1,4 @@
-// <!-----------------------------------------------------------------------/>
-// initailzation of matrix started xx---xx
+// <!-------------------initailzation of matrix started---------------------/>
 
 var trail = new Array(9);
 for (var i = 0; i < trail.length; i++) {
@@ -46,14 +45,14 @@ for (let i = 0; i < 9; i++) {
     }
     // console.log(user[i]);
 }
-// initailzation of matrix ended xx---xx
-// <!-----------------------------------------------------------------------/>
+// <!-------------------initailzation of matrix ended ----------------------/>
 
 
 
 
-// <!-----------------------------------------------------------------------/>
-// genrating rand no. for dipalying
+
+// <!----------------genrating rand no. for dipalying-----------------------/>
+
 let level = 0;
 // when level = 0 dificulty => easy
 // when level = 1 dificulty => medium
@@ -80,13 +79,15 @@ document.getElementById('easy').addEventListener('click', easy1);
 document.getElementById('medium').addEventListener('click', medium1);
 document.getElementById('hard').addEventListener('click', hard1);
 
-// generated rand no. for dipalying
-// <!-----------------------------------------------------------------------/>
+// <!----------------generated rand no. for dipalying-----------------------/>
 
 
 
-// <!-----------------------------------------------------------------------/>
-// creating a matrix
+
+
+
+// <!--------------------------  creating a matrix--------------------------------------/>
+
 
 let table = document.createElement('table');
 // table.setAttribute("style","border:1px solid #D6CDA4" )
@@ -102,9 +103,12 @@ function checkInput(ob) {
     var invalidChars = /[^1-9]/gi
     if (invalidChars.test(ob.value)) {
         alert("only numerical");
+
         ob.value = ob.value.replace(invalidChars, "");
+        return false;
     }
-};
+    return true;
+}
 
 function create_table() {
     // function declation (this is the main part which creates the table of size(9*9) )
@@ -117,39 +121,38 @@ function create_table() {
             cell = document.createElement("td");
             // inp = it stores the user input when the feild is empty
 
-            
-            let inp = '<input  maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" autocomplete="off"/>';
-            
-<<<<<<< HEAD
-            let myid  = (i - 1) * 9 + j;
 
-            cell.setAttribute("id", (i - 1) * 9 + j);
-||||||| 34d7ca4
-            let myid  = (i - 1) * 9 + j;
-            cell.setAttribute("id", (i - 1) * 9 + j);
-=======
-            let num = (i)*10 + (j);
-            let cell_id  = num.toString();
-                cell_id  += "r";
-
+            let num = (i) * 10 + (j);
             let input_id = num.toString();
-            cell.id += cell_id ;
->>>>>>> b7eb177fcabf7e0af0bedb06a13309f3a3275368
             
-            if(checker[i - 1][j - 1] != '*'){
+            // here big input element is breakdown in 3-parts...
+            let inp1 = '<input id = "' + input_id;
+            let inp2 = ' "maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" onkeypress="return myKeyPress(event, id)" autocomplete="off"/>'
+            // let inp3 = '';
+            // those 3-parts are merged together for further use
+            let inp = inp1 + inp2;
+
+
+            let cell_id = num.toString();
+            cell_id += "r";
+
+            cell.id += cell_id;
+
+
+            if (checker[i - 1][j - 1] != '*') {
                 // fixed value for rest of cell....
                 cell.classList.add("fxd");
                 cell.innerHTML = trail[i - 1][j - 1];
             }
             else {
                 cell.innerHTML = inp;
-                $("td input").attr("id" , input_id );
+
+                // document.querySelector("#cell_id input").style.color= "red";
             }
-            
+
 
             if (i % 3 == 0 && j % 3 == 0)
-                cell.setAttribute
-                 ("style", "border-right:3px solid black ;border-bottom:3px solid black;");
+                cell.setAttribute("style", "border-right:3px solid black ;border-bottom:3px solid black;");
             else if (i % 3 == 0 && j % 3 != 0)
                 cell.setAttribute("style", "border-bottom:3px solid black; border-right:3px solid #D6CDA4;");
             else if (j % 3 == 0 && i % 3 != 0)
@@ -164,29 +167,43 @@ function create_table() {
     }
 
 }
-$("input").keyup(function(){
-    // $("input").css("background-color", "pink");
-    alert( "Handler for .click() called." );
-  });
 
-// $("input").click( function(){
-//     alert( "Handler for .click() called." );
-// });
-
-// generated matrix
-// <!-----------------------------------------------------------------------/>
-
-
-
-// matrix called and printed to a webpage (styling is still pendding....)
+// <!------------matrix design + printing + adding input cell  -  end -----------------/>
 
 
 
 
 
+// <!---------------------------user input — listener --------------------------------/>
+// Recording which no. is entered in which cell of matrix 
+function myKeyPress(e, id) {
+    var keynum;
+    if (window.event) {
+        keynum = e.keyCode;
+    } else if (e.which) {
+        keynum = e.which;
+    }
+    let num_pressed = String.fromCharCode(keynum);
+  
 
-// Countdown-Timer started
-// <!-----------------------------------------------------------------------/>
+        // id  => id of input cell where user enters new value
+        // num_pressed  => tell's what number was press
+        alert(num_pressed + "  " + id);
+        
+        user[id[0]-'1'][id[1]-'1']=num_pressed;
+       
+    
+}
+
+// <!---------------------------function end-------------------------------------------/>
+
+
+
+
+
+// <!----------------------------Countdown-Timer started-------------------------------/>
+
+
 function f1() {
     countdown("timer2", 10, 0);
 }
@@ -259,10 +276,12 @@ document.getElementById('resume').addEventListener('click', function () {
 // }
 
 
+// <!----------------------------Countdown-Timer ended------------------------------/>
 
-// Countdown-Timer ended
-// <!-----------------------------------------------------------------------/>
 
-// calling a matrix(table , this will )
+
+// <!------------------- calling a matrix(table , this will )------------------------/>
+
 document.querySelector(".matrix").onload = create_table();
-// matrix called
+
+ // <!---------------------------- matrix called ended------------------------------/>
