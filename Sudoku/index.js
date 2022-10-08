@@ -22,7 +22,7 @@ for (var i = 0; i < checker.length; i++) {
 
 for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-        if (i === j)
+        if (i === 0 )
             checker[i][j] = "*";
         else
             checker[i][j] = trail[i][j];
@@ -124,7 +124,7 @@ function create_table() {
 
             let num = (i) * 10 + (j);
             let input_id = num.toString();
-            
+
             // here big input element is breakdown in 3-parts...
             let inp1 = '<input id = "' + input_id;
             let inp2 = ' "maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" onkeypress="return myKeyPress(event, id)" autocomplete="off"/>'
@@ -170,6 +170,93 @@ function create_table() {
 
 // <!------------matrix design + printing + adding input cell  -  end -----------------/>
 
+i
+
+
+
+// <!------------check for a user input -----------------/>
+function check_row(  row, column,keypress)
+{
+  for(let j=0;j<9;j++)
+  {
+    if(user[row][j] == keypress)
+    return 0;
+     
+  }
+  return 1;
+}
+
+function check_column(row, column,keypress)
+{
+    for(let j=0;j<9;j++)
+  {
+    if(user[j][column] == keypress)
+    return 0;
+     
+  }
+  return 1;
+    
+}
+
+function check_box(row, column,keypress)
+{
+     row-=row%3 ;
+     column-=column%3;
+     console.log(row + " "+ column);
+     for(let i=row;i<row+3;i++)
+     {
+        for(let j=column;j<column+3;j++)
+        {
+            if(user[i][j]===keypress)
+            return 0;
+        }
+     }
+     return 1;
+    
+}
+
+function check_input(id, keypress) {
+    let ok = 1;
+    let i = id[0] - '1';
+    let j = id[1] - '1';
+    
+   
+    if(!check_row(i,j,keypress)){
+     return 0;
+    }
+
+    if(!check_column(i,j,keypress)){
+        
+        return 0 ;
+    }
+    
+
+    if(!check_box(i,j,keypress))
+    {
+        ok=0;
+        return ok;
+    }
+
+  return 1;
+
+    //boxcheck
+
+}
+
+
+
+
+
+
+
+
+
+// <!------------check for a user input -----------------/>
+
+
+
+
+
 
 
 
@@ -184,15 +271,23 @@ function myKeyPress(e, id) {
         keynum = e.which;
     }
     let num_pressed = String.fromCharCode(keynum);
-  
 
-        // id  => id of input cell where user enters new value
-        // num_pressed  => tell's what number was press
-        alert(num_pressed + "  " + id);
-        
-        user[id[0]-'1'][id[1]-'1']=num_pressed;
-       
+
+    // id  => id of input cell where user enters new value
+    // num_pressed  => tell's what number was press
+
+
+    alert(num_pressed + "  " + id);
+     let ok = check_input(id, num_pressed - '0');
     
+     console.log(ok);
+     if(!ok){
+          document.getElementById(id).style.backgroundColor= "#FFDEDE";
+     }
+     else 
+          user[id[0] - '1'][id[1] - '1'] = num_pressed - '0';
+
+
 }
 
 // <!---------------------------function end-------------------------------------------/>
