@@ -1,4 +1,4 @@
-// <!-------------------initailzation of matrix started---------------------/>
+//            <!-------------------Begun initialising the matrix---------------------/>
 
 var trail = new Array(9);
 for (var i = 0; i < trail.length; i++) {
@@ -45,18 +45,21 @@ for (let i = 0; i < 9; i++) {
     }
     // console.log(user[i]);
 }
-// <!-------------------initailzation of matrix ended ----------------------/>
+
+//            <!------------------- ending of matrix's initailzation ----------------------/>
 
 
 
 
 
-// <!----------------genrating rand no. for dipalying-----------------------/>
+
+//            <!----------------genrating rand no. for dipalying----------------------------/>
 
 let level = 0;
-// when level = 0 dificulty => easy
-// when level = 1 dificulty => medium
-// when level = 2 dificulty => hard
+// when level = 0 difficulty level => Easy
+// when level = 1 difficulty level => Medium
+// when level = 2 difficulty level => Hard
+
 let cnt_display = 30;
 function hard1(event) {
     level = 2;
@@ -79,20 +82,20 @@ document.getElementById('easy').addEventListener('click', easy1);
 document.getElementById('medium').addEventListener('click', medium1);
 document.getElementById('hard').addEventListener('click', hard1);
 
-// <!----------------generated rand no. for dipalying-----------------------/>
+//             <!---------------- for display, a randomly generated number--------------------/>
 
 
 
 
 
 
-// <!--------------------------  creating a matrix--------------------------------------/>
+//             <!-------------------------- generating a matrix----------------------------------/>
 
 
 let table = document.createElement('table');
 // table.setAttribute("style","border:1px solid #D6CDA4" )
 
-// Adding the entire table into the matrix class
+// A complete table is added to the matrix class
 
 document.querySelector('.matrix').appendChild(table);
 let tbody = document.createElement('tbody');
@@ -111,15 +114,16 @@ function checkInput(ob) {
 }
 
 function create_table() {
-    // function declation (this is the main part which creates the table of size(9*9) )
+    // function declaration (this is the main part which creates the table of size(9x9))
     // console.log("creating table");
+    
     for (i = 1; i <= 9; i++) {
 
         var row = document.createElement("tr");
 
         for (j = 1; j <= 9; j++) {
             cell = document.createElement("td");
-            // inp = it stores the user input when the feild is empty
+            // inp = Whenever a field is empty, it saves user input.
 
 
             let num = (i) * 10 + (j);
@@ -128,6 +132,7 @@ function create_table() {
             // here big input element is breakdown in 3-parts...
             let inp1 = '<input id = "' + input_id;
             let inp2 = ' "maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" onkeypress="return myKeyPress(event, id)" autocomplete="off"/>'
+            
             // let inp3 = '';
             // those 3-parts are merged together for further use
             let inp = inp1 + inp2;
@@ -168,13 +173,14 @@ function create_table() {
 
 }
 
-// <!------------matrix design + printing + adding input cell  -  end -----------------/>
-
-i
+//              <!------------matrix design + printing + adding input cell  -  end -----------------/>
 
 
 
-// <!------------check for a user input -----------------/>
+  
+
+//                  <!------------------------check for a user input ----------------------------/>
+
 function check_row(  row, column,keypress)
 {
   for(let j=0;j<9;j++)
@@ -244,14 +250,7 @@ function check_input(id, keypress) {
 }
 
 
-
-
-
-
-
-
-
-// <!------------check for a user input -----------------/>
+//                     <!------------------check for a user input ------------------------/>
 
 
 
@@ -261,7 +260,8 @@ function check_input(id, keypress) {
 
 
 
-// <!---------------------------user input — listener --------------------------------/>
+//                  <!--------------------------- user input — listener --------------------------------/>
+
 // Recording which no. is entered in which cell of matrix 
 function myKeyPress(e, id) {
     var keynum;
@@ -282,7 +282,7 @@ function myKeyPress(e, id) {
     
      console.log(ok);
      if(!ok){
-          document.getElementById(id).style.backgroundColor= "#FFDEDE";
+          document.getElementById(id).style.backgroundColor= "#FF5D5D";
      }
      else 
           user[id[0] - '1'][id[1] - '1'] = num_pressed - '0';
@@ -290,13 +290,13 @@ function myKeyPress(e, id) {
 
 }
 
-// <!---------------------------function end-------------------------------------------/>
+//                <!---------------------------function end-------------------------------------------/>
 
 
 
 
 
-// <!----------------------------Countdown-Timer started-------------------------------/>
+//                <!---------------------------Countdown-Timer started-------------------------------/>
 
 
 function f1() {
