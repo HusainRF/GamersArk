@@ -1,101 +1,89 @@
+//            <!-------------- Random cells will be selected for getting unique salon   ----------/>
+
+
+
 //hashmap for finding input cells
 let hashmap = new Array(9);
 
 for (var i = 0; i < 9; i++) {
     hashmap[i] = new Array(9);
 
-
+    
     for (j = 0; j < 9; j++) {
         hashmap[i][j] = 1;
 
     }
-
+    
 }
 
-function find_input_box(cnt_display){
 
-// in hashmao 0 indicates -> requires input element 
-// in hashmao 1 indicates -> it should have fixed value - disaplyed
+// function which selects k cell, in which we put <input> element
+
+function find_input_box(cnt_display) {
+
+    // in hashmao 0 indicates -> requires input element 
+    // in hashmao 1 indicates -> it should have fixed value - disaplyed
 
 
-// let cnt_display=30; /// for comment
-// console.log(cnt_display);
-let input_cnt=81-cnt_display;
+    // let cnt_display=30; /// for comment
+    // console.log(cnt_display);
+    let input_cnt = 81 - cnt_display;
 
-let z=0;
-let all_indeces =new Array(81);
+    let z = 0;
+    let all_indeces = new Array(81);
 
-for(i=0;i<9;i++)
-{
-    for(j=0;j<9;j++)
-    {
-        all_indeces[z]=i*10+j;
-        z++;
+    for (i = 0; i < 9; i++) {
+        for (j = 0; j < 9; j++) {
+            all_indeces[z] = i * 10 + j;
+            z++;
+        }
     }
-}
-let maxi=81;
+    let maxi = 81;
 
-for(z = 0 ; z < input_cnt ; z++)
-{
-    let randm = Math.floor(Math.random()*(maxi+1));
-    
-    
-    let cl= Math.floor(all_indeces[randm]%10);
-    let rw=Math.floor(all_indeces[randm] /10) ;
+    for (z = 0; z < input_cnt; z++) {
+        let randm = Math.floor(Math.random() * (maxi + 1));
 
-    hashmap[rw][cl] = 0;
-    
-    let r = 0  ;
-    i = 0 ;
-    
-    let temp=new Array(maxi-1);
 
-    for(i=0;i<maxi;i++) 
-    {
-       if(i==randm)
-         i++;
-       temp[r] = all_indeces[i]
-       r++;
+        let cl = Math.floor(all_indeces[randm] % 10);
+        let rw = Math.floor(all_indeces[randm] / 10);
+
+        hashmap[rw][cl] = 0;
+
+        let r = 0;
+        i = 0;
+
+        let temp = new Array(maxi - 1);
+
+        for (i = 0; i < maxi; i++) {
+            if (i == randm)
+                i++;
+            temp[r] = all_indeces[i]
+            r++;
+        }
+        for (i = 0; i < maxi - 1; i++)
+            all_indeces[i] = temp[i];
+        maxi--;
     }
-    for( i =0 ;i < maxi -1; i++)
-    all_indeces[i] = temp[i];
-    maxi--;
-}
 
-console.log(hashmap);
+    console.log(hashmap);
 }
 
 
-//            <!-------------------Begun initialising the matrix---------------------/>
+//            <!-------------- random input cell selceted for a unique problem ----------/>
 
-var trail = new Array(9);
+
+
+
+
+//            <!------------------- initialising the matrix - begin---------------------/>
+
+
+    // matrix declartion - start 
+
+    var trail = new Array(9);
 for (var i = 0; i < trail.length; i++) {
     trail[i] = new Array(9);
 
-}
-
-for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-        trail[i][j] = 1;
-    }
-    // console.log(trail[i]);
-}
-
-
-var checker = new Array(9);
-for (var i = 0; i < checker.length; i++) {
-    checker[i] = new Array(9);
-
-}
-
-for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-        if (hashmap[i][j] === 0)
-            checker[i][j] = "*";
-        else
-            checker[i][j] = trail[i][j];
-    }
-    // console.log(checker[i]);
 }
 
 var user = new Array(9);
@@ -104,15 +92,49 @@ for (var i = 0; i < user.length; i++) {
 
 }
 
-for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-        if (hashmap[i][j] === 0)
-            user[i][j] = '*';
-        else
-            user[i][j] = trail[i][j];
-    }
-    // console.log(user[i]);
+var checker = new Array(9);
+for (var i = 0; i < checker.length; i++) {
+    checker[i] = new Array(9);
+
 }
+    // matrix declaration ended
+
+
+
+// assigning initial values to matrix 
+function matrix_initialization(){
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            trail[i][j] = 1;
+        }
+        // console.log(trail[i]);
+    }
+
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if (hashmap[i][j] === 0)
+                checker[i][j] = "*";
+            else
+                checker[i][j] = trail[i][j];
+        }
+        // console.log(checker[i]);
+    }
+
+
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if (hashmap[i][j] === 0)
+                user[i][j] = '*';
+            else
+                user[i][j] = trail[i][j];
+        }
+        // console.log(user[i]);
+    }
+
+    // matrix value assigned  - end   
+
+}
+
 
 //            <!------------------- ending of matrix's initailzation ----------------------/>
 
@@ -254,7 +276,7 @@ function create_table() {
 
 function check_row(row, column, keypress) {
     for (let j = 0; j < 9; j++) {
-        if (user[row][j] == keypress)
+        if (user[row][j] === keypress)
             return 0;
 
     }
@@ -263,7 +285,7 @@ function check_row(row, column, keypress) {
 
 function check_column(row, column, keypress) {
     for (let j = 0; j < 9; j++) {
-        if (user[j][column] == keypress)
+        if (user[j][column] === keypress)
             return 0;
 
     }
@@ -303,6 +325,7 @@ function check_input(id, keypress) {
 
     if (!check_box(i, j, keypress)) {
         ok = 0;
+        console.log(ok)// 
         return ok;
     }
 
@@ -313,7 +336,7 @@ function check_input(id, keypress) {
 }
 
 
-//                     <!------------------check for a user input ------------------------/>
+//    <!------------------------------- check for a user input ---------------------------/>
 
 
 
@@ -323,7 +346,7 @@ function check_input(id, keypress) {
 
 
 
-//                  <!--------------------------- user input — listener --------------------------------/>
+//     <!--------------------------- user input — listener --------------------------------/>
 
 // Recording which no. is entered in which cell of matrix 
 function myKeyPress(e, id) {
@@ -353,18 +376,21 @@ function myKeyPress(e, id) {
 
 }
 
-//                <!---------------------------function end-------------------------------------------/>
+//    <!---------------------------function end-------------------------------------------/>
 
 
 
 
 
-//                <!---------------------------Countdown-Timer started-------------------------------/>
+
+
+//      <!---------------------------Countdown-Timer started-------------------------------/>
 
 
 function f1() {
     countdown("timer2", 10, 0);
 }
+
 var pause = true;
 function countdown(elementName, minutes, seconds) {
     var element, endTime, hours, mins, msLeft, time;
@@ -440,6 +466,7 @@ document.getElementById('resume').addEventListener('click', function () {
 
 // <!------------------- calling a matrix(table , this will )------------------------/>
 
-document.querySelector(".matrix").onload = create_table();
 window.onload = easy1();
+window.onload = matrix_initialization();
+document.querySelector(".matrix").onload = create_table();
  // <!---------------------------- matrix called ended------------------------------/>
