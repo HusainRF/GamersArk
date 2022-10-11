@@ -8,12 +8,12 @@ let hashmap = new Array(9);
 for (var i = 0; i < 9; i++) {
     hashmap[i] = new Array(9);
 
-    
+
     for (j = 0; j < 9; j++) {
         hashmap[i][j] = 1;
 
     }
-    
+
 }
 
 
@@ -78,9 +78,9 @@ function find_input_box(cnt_display) {
 //            <!------------------- initialising the matrix - begin---------------------/>
 
 
-    // matrix declartion - start 
+// matrix declartion - start 
 
-    var trail = new Array(9);
+var trail = new Array(9);
 for (var i = 0; i < trail.length; i++) {
     trail[i] = new Array(9);
 
@@ -97,12 +97,12 @@ for (var i = 0; i < checker.length; i++) {
     checker[i] = new Array(9);
 
 }
-    // matrix declaration ended
+// matrix declaration ended
 
 
 
 // assigning initial values to matrix 
-function matrix_initialization(){
+function matrix_initialization() {
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             trail[i][j] = 1;
@@ -198,7 +198,7 @@ function checkInput(ob) {
     //to check input should be 1-9
     var invalidChars = /[^1-9]/gi
     if (invalidChars.test(ob.value)) {
-        alert("only numerical");
+        // alert("only numerical");
 
         ob.value = ob.value.replace(invalidChars, "");
         return false;
@@ -224,7 +224,7 @@ function create_table() {
 
             // here big input element is breakdown in 3-parts...
             let inp1 = '<input id = "' + input_id;
-            let inp2 = ' "maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" onkeypress="return myKeyPress(event, id)" autocomplete="off"/>'
+            let inp2 = ' "maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" onkeydown ="return myKeyPress(event, id)" autocomplete="off"/>'
 
             // let inp3 = '';
             // those 3-parts are merged together for further use
@@ -296,7 +296,7 @@ function check_column(row, column, keypress) {
 function check_box(row, column, keypress) {
     row -= row % 3;
     column -= column % 3;
-    console.log(row + " " + column);
+    // console.log(row + " " + column);
     for (let i = row; i < row + 3; i++) {
         for (let j = column; j < column + 3; j++) {
             if (user[i][j] === keypress)
@@ -313,23 +313,24 @@ function check_input(id, keypress) {
     let j = id[1] - '1';
 
 
-    if (!check_row(i, j, keypress)) {
+    if (check_row(i, j, keypress) === 0) {
+        console.log(1)// 
         return 0;
     }
 
-    if (!check_column(i, j, keypress)) {
+    if (check_column(i, j, keypress) === 0) {
 
+        console.log(2)// 
         return 0;
     }
 
 
-    if (!check_box(i, j, keypress)) {
-        ok = 0;
-        console.log(ok)// 
-        return ok;
+    if (check_box(i, j, keypress) === 0) {
+        console.log(3)// 
+        return 0;
     }
 
-    return 1;
+    return 11;
 
     //boxcheck
 
@@ -351,6 +352,8 @@ function check_input(id, keypress) {
 // Recording which no. is entered in which cell of matrix 
 function myKeyPress(e, id) {
     var keynum;
+
+
     if (window.event) {
         keynum = e.keyCode;
     } else if (e.which) {
@@ -363,16 +366,26 @@ function myKeyPress(e, id) {
     // num_pressed  => tell's what number was press
 
 
-    alert(num_pressed + "  " + id);
-    let ok = check_input(id, num_pressed - '0');
+    // alert(num_pressed + "  " + id);
+    
+    if (((num_pressed - '0') >= 1 && (num_pressed - '0') <= 9) || e.keyCode == 8) {
+      
+        let ok = check_input(id, num_pressed - '0');
+        if (e.keyCode == 8) {
+            user[id[0] - '1'][id[1] - '1'] = '*';
+        }
+        else if(user[id[0] - '1'][id[1] - '1'] === '*')
+            user[id[0] - '1'][id[1] - '1'] = num_pressed - '0';
 
-    console.log(ok);
-    if (!ok) {
-        document.getElementById(id).style.backgroundColor = "#FF5D5D";
+        if (!ok) {
+            document.getElementById(id).style.backgroundColor = "#FF5D5D";
+        }
+        else {
+            document.getElementById(id).style.backgroundColor = "white";
+        }
+
+        console.log(user);
     }
-    else
-        user[id[0] - '1'][id[1] - '1'] = num_pressed - '0';
-
 
 }
 
