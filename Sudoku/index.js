@@ -314,19 +314,19 @@ function check_input(id, keypress) {
 
 
     if (check_row(i, j, keypress) === 0) {
-        console.log(1)// 
+        // console.log(1)// 
         return 0;
     }
 
     if (check_column(i, j, keypress) === 0) {
 
-        console.log(2)// 
+        // console.log(2)// 
         return 0;
     }
 
 
     if (check_box(i, j, keypress) === 0) {
-        console.log(3)// 
+        // console.log(3)// 
         return 0;
     }
 
@@ -374,17 +374,18 @@ function myKeyPress(e, id) {
         if (e.keyCode == 8) {
             user[id[0] - '1'][id[1] - '1'] = '*';
         }
-        else if(user[id[0] - '1'][id[1] - '1'] === '*')
+        else if(user[id[0] - '1'][id[1] - '1'] === '*'){
             user[id[0] - '1'][id[1] - '1'] = num_pressed - '0';
-
-        if (!ok) {
-            document.getElementById(id).style.backgroundColor = "#FF5D5D";
+            
+                    if (!ok) {
+                        document.getElementById(id).style.backgroundColor = "#FF5D5D";
+                    }
+                    else {
+                        document.getElementById(id).style.backgroundColor = "white";
+                    }
         }
-        else {
-            document.getElementById(id).style.backgroundColor = "white";
-        }
 
-        console.log(user);
+        // console.log(user);
     }
 
 }
