@@ -149,26 +149,36 @@ let level = 0;
 // when level = 0 difficulty level => Easy
 // when level = 1 difficulty level => Medium
 // when level = 2 difficulty level => Hard
-
+let duration;
 let cnt_display = 30;
 function hard1(event) {
     level = 2;
+    duration = 1500; // duration are in seconds.
     cnt_display = 30 + Math.floor((Math.random() * 10)); // generate random value 30-40 
     find_input_box(cnt_display);
     console.log(cnt_display);
+    // document.getElementById("mode").innerHTML="Hard";
+    // document.getElementById("alloted").innerHTML="25 min";
 }
 
 function easy1() {
     level = 0;
+    duration = 600; // duration are in seconds.
     cnt_display = 50 + Math.floor((Math.random() * 10)); // generate random value 50-60
     find_input_box(cnt_display);
     console.log(cnt_display);
+    // document.getElementById("mode").innerHTML="Easy";
+    // document.getElementById("alloted").innerHTML="10 min";
+    
 }
 function medium1() {
     level = 1;
+    duration = 1080; // duration are in seconds.
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
     find_input_box(cnt_display);
     console.log(cnt_display);
+    // document.getElementById("mode").innerHTML="Medium";
+    // document.getElementById("alloted").innerHTML="18 min";
 }
 
 document.getElementById('easy').addEventListener('click', easy1);
@@ -367,22 +377,22 @@ function myKeyPress(e, id) {
 
 
     // alert(num_pressed + "  " + id);
-    
+
     if (((num_pressed - '0') >= 1 && (num_pressed - '0') <= 9) || e.keyCode == 8) {
-      
+
         let ok = check_input(id, num_pressed - '0');
         if (e.keyCode == 8) {
             user[id[0] - '1'][id[1] - '1'] = '*';
         }
-        else if(user[id[0] - '1'][id[1] - '1'] === '*'){
+        else if (user[id[0] - '1'][id[1] - '1'] === '*') {
             user[id[0] - '1'][id[1] - '1'] = num_pressed - '0';
-            
-                    if (!ok) {
-                        document.getElementById(id).style.backgroundColor = "#FF5D5D";
-                    }
-                    else {
-                        document.getElementById(id).style.backgroundColor = "white";
-                    }
+
+            if (!ok) {
+                document.getElementById(id).style.backgroundColor = "#FF5D5D";
+            }
+            else {
+                document.getElementById(id).style.backgroundColor = "white";
+            }
         }
 
         // console.log(user);
@@ -402,48 +412,40 @@ function myKeyPress(e, id) {
 
 
 function f1() {
-    countdown("timer2", 10, 0);
+    startTimer(duration, timer2);
 }
 
 var pause = true;
-function countdown(elementName, minutes, seconds) {
-    var element, endTime, hours, mins, msLeft, time;
-    var counter = setInterval(updateTimer, 1000);
-    element = document.getElementById(elementName);
-    endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
-    var temp = 0;
-    function twoDigits(n) {
-        return (n <= 9 ? "0" + n : n);
-    }
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    const myinterval = setInterval(myTimer, 1000);
+    function myTimer() {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
 
-    function updateTimer() {
-        if (pause != false) {
-            msLeft = endTime + temp - (+new Date);
-            temp = 0;
-            if (msLeft < 1000) {
-                element.innerHTML = "Time is up!";
-                clearInterval(updateTimer);
-            } else {
-                time = new Date(msLeft);
-                hours = time.getUTCHours();
-                mins = time.getUTCMinutes();
-                element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds());
-                // setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
-            }
-        }
-        else {
-            temp += 1000;
-        }
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
+        display.innerHTML = minutes + ":" + seconds;
+           
+        if (timer === -1) {
+            display.style.backgroundColor="red";
+            display.innerHTML ="Time is Up!";
+             clearInterval(myinterval);
+
+            /*  timer = duration; */ // uncomment this line to reset timer automatically after reaching 0
+        }
+        timer--;
     }
 }
-document.getElementById('pause').addEventListener('click', function () {
-    pause = false;
-});
 
-document.getElementById('resume').addEventListener('click', function () {
-    pause = true;
-});
+// document.getElementById('pause').addEventListener('click', function () {
+//     pause = false;
+// });
+
+// document.getElementById('resume').addEventListener('click', function () {
+//     pause = true;
+// });
 // countdown( "ten-countdown", 10, 0 );
 
 // var timersCount = 0;
