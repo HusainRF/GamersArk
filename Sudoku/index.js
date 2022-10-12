@@ -351,31 +351,41 @@ function check_input(id, keypress) {
 
 // Recording which no. is entered in which cell of matrix 
 function myKeyPress(e, id) {
-    var keynum;
+    // var keynum;
 
 
-    if (window.event) {
-        keynum = e.keyCode;
-    } else if (e.which) {
-        keynum = e.which;
-    }
-    let num_pressed = String.fromCharCode(keynum);
+    // if (window.event) {
+    //     keynum = e.keyCode;
+    // } else if (e.which) {
+    //     keynum = e.which;
+    // }
 
+    // let num_pressed = String.fromCharCode(keynum);
 
+    // console.log(num_pressed);
     // id  => id of input cell where user enters new value
     // num_pressed  => tell's what number was press
 
 
     // alert(num_pressed + "  " + id);
     
-    if (((num_pressed - '0') >= 1 && (num_pressed - '0') <= 9) || e.keyCode == 8) {
-      
-        let ok = check_input(id, num_pressed - '0');
+    if (((e.keyCode) > 48 && (e.keyCode) <= 57) || ((e.keyCode) > 96 && (e.keyCode) <= 105) || e.keyCode == 8) {
+        
+        let num_pressed ;
+        
+        if( (e.keyCode) > 48 && (e.keyCode) <= 57 )
+             num_pressed = e.keyCode - 48;
+         if( (e.keyCode) > 96 && (e.keyCode) <= 105 )
+             num_pressed = e.keyCode - 96;
+        
+         
         if (e.keyCode == 8) {
             user[id[0] - '1'][id[1] - '1'] = '*';
         }
         else if(user[id[0] - '1'][id[1] - '1'] === '*'){
-            user[id[0] - '1'][id[1] - '1'] = num_pressed - '0';
+            
+            let ok = check_input(id, num_pressed );
+            user[id[0] - '1'][id[1] - '1'] = num_pressed ;
             
                     if (!ok) {
                         document.getElementById(id).style.backgroundColor = "#FF5D5D";
