@@ -4,16 +4,8 @@
 
 //hashmap for finding input cells
 let hashmap = new Array(9);
-
 for (var i = 0; i < 9; i++) {
     hashmap[i] = new Array(9);
-
-
-    for (j = 0; j < 9; j++) {
-        hashmap[i][j] = 1;
-
-    }
-
 }
 
 
@@ -23,7 +15,12 @@ function find_input_box(cnt_display) {
 
     // in hashmao 0 indicates -> requires input element 
     // in hashmao 1 indicates -> it should have fixed value - disaplyed
-
+    for (var i = 0; i < 9; i++) {
+        for (j = 0; j < 9; j++) {
+            hashmap[i][j] = 1;
+        }
+        // assign all value of hashmap to 1 
+    }
 
     // let cnt_display=30; /// for comment
     // console.log(cnt_display);
@@ -103,6 +100,8 @@ for (var i = 0; i < checker.length; i++) {
 
 // assigning initial values to matrix 
 function matrix_initialization() {
+
+
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             trail[i][j] = 1;
@@ -132,7 +131,7 @@ function matrix_initialization() {
     }
 
     // matrix value assigned  - end   
-
+    create_table();
 }
 
 
@@ -156,6 +155,7 @@ function hard1(event) {
     duration = 1500; // duration are in seconds.
     cnt_display = 30 + Math.floor((Math.random() * 10)); // generate random value 30-40 
     find_input_box(cnt_display);
+    matrix_initialization();
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Hard";
     // document.getElementById("alloted").innerHTML="25 min";
@@ -166,6 +166,7 @@ function easy1() {
     duration = 600; // duration are in seconds.
     cnt_display = 50 + Math.floor((Math.random() * 10)); // generate random value 50-60
     find_input_box(cnt_display);
+    matrix_initialization();
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Easy";
     // document.getElementById("alloted").innerHTML="10 min";
@@ -176,6 +177,7 @@ function medium1() {
     duration = 1080; // duration are in seconds.
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
     find_input_box(cnt_display);
+    matrix_initialization();
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Medium";
     // document.getElementById("alloted").innerHTML="18 min";
@@ -195,14 +197,11 @@ document.getElementById('hard').addEventListener('click', hard1);
 //             <!-------------------------- generating a matrix----------------------------------/>
 
 
-let table = document.createElement('table');
-// table.setAttribute("style","border:1px solid #D6CDA4" )
+let table;
+table = document.createElement('table');
 
+// document.querySelector('.matrix').append(table);
 // A complete table is added to the matrix class
-
-document.querySelector('.matrix').appendChild(table);
-let tbody = document.createElement('tbody');
-table.appendChild(tbody);
 
 function checkInput(ob) {
     //to check input should be 1-9
@@ -219,6 +218,26 @@ function checkInput(ob) {
 function create_table() {
     // function declaration (this is the main part which creates the table of size(9x9))
     // console.log("creating table");
+    table = undefined;
+     
+    // console.log(table);
+    table = document.createElement('table');
+
+    // very important  this part used to load diff matrix for (easy , med , hard) 
+    let mat = document.querySelector('.matrix'); 
+    console.log(mat.childElementCount);
+
+    let element = document.querySelector('.matrix'); 
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+    mat.appendChild(table);
+    ////// do'nt delete 
+    
+
+    let tbody = document.createElement('tbody');
+    
+    table.appendChild(tbody);
 
     for (i = 1; i <= 9; i++) {
 
@@ -378,31 +397,32 @@ function myKeyPress(e, id) {
 
 
     // alert(num_pressed + "  " + id);
-    
+
     if (((e.keyCode) > 48 && (e.keyCode) <= 57) || ((e.keyCode) > 96 && (e.keyCode) <= 105) || e.keyCode == 8) {
-        
-        let num_pressed ;
-        
-        if( (e.keyCode) > 48 && (e.keyCode) <= 57 )
-             num_pressed = e.keyCode - 48;
-         if( (e.keyCode) > 96 && (e.keyCode) <= 105 )
-             num_pressed = e.keyCode - 96;
-        
-         
+
+        let num_pressed;
+
+        if ((e.keyCode) > 48 && (e.keyCode) <= 57)
+            num_pressed = e.keyCode - 48;
+        if ((e.keyCode) > 96 && (e.keyCode) <= 105)
+            num_pressed = e.keyCode - 96;
+
+
         if (e.keyCode == 8) {
             user[id[0] - '1'][id[1] - '1'] = '*';
+            document.getElementById(id).style.backgroundColor = "white";
         }
-        else if(user[id[0] - '1'][id[1] - '1'] === '*'){
-            
-            let ok = check_input(id, num_pressed );
-            user[id[0] - '1'][id[1] - '1'] = num_pressed ;
-            
-                    if (!ok) {
-                        document.getElementById(id).style.backgroundColor = "#FF5D5D";
-                    }
-                    else {
-                        document.getElementById(id).style.backgroundColor = "white";
-                    }
+        else if (user[id[0] - '1'][id[1] - '1'] === '*') {
+
+            let ok = check_input(id, num_pressed);
+            user[id[0] - '1'][id[1] - '1'] = num_pressed;
+
+            if (!ok) {
+                document.getElementById(id).style.backgroundColor = "#FF5D5D";
+            }
+            else {
+                document.getElementById(id).style.backgroundColor = "white";
+            }
         }
 
         // console.log(user);
@@ -493,6 +513,5 @@ function startTimer(duration, display) {
 // <!------------------- calling a matrix(table , this will )------------------------/>
 
 window.onload = easy1();
-window.onload = matrix_initialization();
-document.querySelector(".matrix").onload = create_table();
+// document.querySelector(".matrix").onload =
  // <!---------------------------- matrix called ended------------------------------/>
