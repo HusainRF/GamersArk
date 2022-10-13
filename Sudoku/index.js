@@ -381,6 +381,7 @@ function myKeyPress(e, id) {
          
         if (e.keyCode == 8) {
             user[id[0] - '1'][id[1] - '1'] = '*';
+            document.getElementById(id).style.backgroundColor = "white";
         }
         else if(user[id[0] - '1'][id[1] - '1'] === '*'){
             
