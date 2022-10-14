@@ -1,4 +1,90 @@
-//            <!-------------- Random cells will be selected for getting unique salon   ----------/>
+//            <!---------------- Random cells will be selected for getting unique salon  ----------------/>
+
+
+let matrix_quest = new Array(9);
+for (var i = 0; i < 9; i++) {
+    matrix_quest[i] = new Array(9);
+}
+
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+}
+
+
+
+
+function generate_diagonal(){
+  
+    // matrix initialization by zero
+     for( i = 0 ;i < 9 ; i++){
+        for(j =0 ; j< 9 ; j++){
+            matrix_quest[i][j] = 0;
+          }
+     }
+
+    let possible_input = new Array(9);
+    
+    for( i = 0 ;i < 9 ; i++)
+         possible_input[i] = i+1;
+
+    shuffleArray(possible_input);
+    let mat_idx = 0;
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            matrix_quest[i][j] = possible_input[mat_idx];
+            mat_idx++;
+        }  
+    }
+ 
+    shuffleArray(possible_input);
+    mat_idx = 0;
+    for ( i = 3; i <6; i++) {
+        for ( j = 3; j < 6; j++) {
+            matrix_quest[i][j] = possible_input[mat_idx];
+            mat_idx++;
+        }  
+    }
+
+    shuffleArray(possible_input);
+    mat_idx = 0;
+    for (i = 6; i < 9; i++) {
+        for (j = 6; j < 9; j++) {
+            matrix_quest[i][j] = possible_input[mat_idx];
+            mat_idx++;
+        }  
+    }
+
+    remain_matrix_generator();
+    
+    console.log(matrix_quest);
+}
+
+
+function remain_matrix_generator(){
+    for(let rw_tr = 0 ; rw_tr <9 ; rw_tr++ ){
+        for(let cl_tr = 0 ; cl_tr <9 ; cl_tr++ ){
+            
+            if(matrix_quest[rw_tr][cl_tr] === 0){
+                 for( let num_ch = 1 ; num_ch <= 9 ; num_ch++){
+                      if(  check(matrix_quest,rw_tr, cl_tr, num_ch) === 1 ){
+                        matrix_quest[rw_tr][cl_tr] = num_ch;
+                          if(remain_matrix_generator() === 1){
+                            return 1;
+                          }
+                          else 
+                            matrix_quest[rw_tr][cl_tr] = 0 ;
+                      }
+                 }
+                 
+                 return 0;
+            }
+        }
+    }
+    return 1;
+}
 
 
 
@@ -13,8 +99,8 @@ for (var i = 0; i < 9; i++) {
 
 function find_input_box(cnt_display) {
 
-    // in hashmao 0 indicates -> requires input element 
-    // in hashmao 1 indicates -> it should have fixed value - disaplyed
+    // in hashmap 0 indicates -> requires input element 
+    // in hashmap 1 indicates -> it should have fixed value - displayed
     for (var i = 0; i < 9; i++) {
         for (j = 0; j < 9; j++) {
             hashmap[i][j] = 1;
@@ -80,7 +166,7 @@ function find_input_box(cnt_display) {
 }
 
 
-//            <!-------------- random input cell selceted for a unique problem ----------/>
+//            <!-------------- random input cell selected for a unique problem ----------/>
 
 
 
@@ -91,19 +177,19 @@ function find_input_box(cnt_display) {
 
 // matrix declartion - start 
 
-var trail = new Array(9);
+var trail = new Array(9);// solution array
 for (var i = 0; i < trail.length; i++) {
     trail[i] = new Array(9);
 
 }
 
-var user = new Array(9);
+var user = new Array(9); // user input array 
 for (var i = 0; i < user.length; i++) {
     user[i] = new Array(9);
 
 }
 
-var checker = new Array(9);
+var checker = new Array(9); // confusion aaray
 for (var i = 0; i < checker.length; i++) {
     checker[i] = new Array(9);
 
@@ -115,10 +201,10 @@ for (var i = 0; i < checker.length; i++) {
 // assigning initial values to matrix 
 function matrix_initialization() {
 
-
+    generate_diagonal();
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-            trail[i][j] = 1;
+            trail[i][j] = matrix_quest[i][j];
         }
         // console.log(trail[i]);
     }
@@ -184,6 +270,7 @@ function medium1() {
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
     find_input_box(cnt_display);
     matrix_initialization();
+    alert("Medium Level");
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Medium";
     // document.getElementById("alloted").innerHTML="18 min";
@@ -194,6 +281,7 @@ function hard1(event) {
     cnt_display = 30 + Math.floor((Math.random() * 10)); // generate random value 30-40 
     find_input_box(cnt_display);
     matrix_initialization();
+    alert("Hard Level");
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Hard";
     // document.getElementById("alloted").innerHTML="25 min";
@@ -322,66 +410,19 @@ function create_table() {
 
 //                  <!------------------------check for a user input ----------------------------/>
 
-function check_input(id, keypress) {
-    let ok = 1;
-    let i = id[0] - '1';
-    let j = id[1] - '1';
-
-
-    if (check_row(i, j, keypress) === 0) {
-        // console.log(1)// 
+function check(matrix_to_check,row, col,keypress)
+{
+    for(i=0;i<9;i++)
+    {
+        if(matrix_to_check[i][col]===keypress)
+        return 0;
+        if(matrix_to_check[row][i]===keypress)
+        return 0;
+        if(matrix_to_check[(3*(Math.floor(row/3)))+ Math.floor(i/3 )][3*(Math.floor(col/3))+i%3] === keypress)
         return 0;
     }
-
-    if (check_column(i, j, keypress) === 0) {
-
-        // console.log(2)// 
-        return 0;
-    }
-
-
-    if (check_box(i, j, keypress) === 0) {
-        // console.log(3)// 
-        return 0;
-    }
-
-    return 11;
-
-    function check_row(row, column, keypress) {
-        for (let j = 0; j < 9; j++) {
-            if (user[row][j] === keypress)
-                return 0;
-
-        }
-        return 1;
-    }
-
-    function check_column(row, column, keypress) {
-        for (let j = 0; j < 9; j++) {
-            if (user[j][column] === keypress)
-                return 0;
-
-        }
-        return 1;
-
-    }
-
-    function check_box(row, column, keypress) {
-        row -= row % 3;
-        column -= column % 3;
-        // console.log(row + " " + column);
-        for (let i = row; i < row + 3; i++) {
-            for (let j = column; j < column + 3; j++) {
-                if (user[i][j] === keypress)
-                    return 0;
-            }
-        }
-        return 1;
-
-    }
-
+    return 1;
 }
-
 
 //    <!------------------------------- check for a user input ---------------------------/>
 
@@ -434,8 +475,10 @@ function myKeyPress(e, id) {
             document.getElementById(id).style.backgroundColor = "white";
         }
         else if (user[id[0] - '1'][id[1] - '1'] === '*') {
+            let rw_data = id[0] -'1';
+            let cl_data = id[1] -'1';
 
-            let ok = check_input(id, num_pressed);// To check if the no. entered is correct or not
+            let ok = check(user,rw_data ,cl_data, num_pressed);// To check if the no. entered is correct or not
             user[id[0] - '1'][id[1] - '1'] = num_pressed; 
 
             if (!ok) // if no is not correct ,we change bg color to red
