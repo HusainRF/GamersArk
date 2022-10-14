@@ -91,19 +91,19 @@ function find_input_box(cnt_display) {
 
 // matrix declartion - start 
 
-var trail = new Array(9);
+var trail = new Array(9);// solution array
 for (var i = 0; i < trail.length; i++) {
     trail[i] = new Array(9);
 
 }
 
-var user = new Array(9);
+var user = new Array(9); // user input array 
 for (var i = 0; i < user.length; i++) {
     user[i] = new Array(9);
 
 }
 
-var checker = new Array(9);
+var checker = new Array(9); // confusion aaray
 for (var i = 0; i < checker.length; i++) {
     checker[i] = new Array(9);
 
@@ -195,6 +195,7 @@ function hard1(event) {
     cnt_display = 30 + Math.floor((Math.random() * 10)); // generate random value 30-40 
     find_input_box(cnt_display);
     matrix_initialization();
+    alert("Hard Level");
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Hard";
     // document.getElementById("alloted").innerHTML="25 min";
@@ -323,66 +324,19 @@ function create_table() {
 
 //                  <!------------------------check for a user input ----------------------------/>
 
-function check_input(id, keypress) {
-    let ok = 1;
-    let i = id[0] - '1';
-    let j = id[1] - '1';
-
-
-    if (check_row(i, j, keypress) === 0) {
-        // console.log(1)// 
+function check(matrix_to_check,row, col,keypress)
+{
+    for(i=0;i<9;i++)
+    {
+        if(matrix_to_check[i][col]===keypress)
+        return 0;
+        if(matrix_to_check[row][i]===keypress)
+        return 0;
+        if(matrix_to_check[(3*(Math.floor(row/3)))+ Math.floor(i/3 )][3*(Math.floor(col/3))+i%3] === keypress)
         return 0;
     }
-
-    if (check_column(i, j, keypress) === 0) {
-
-        // console.log(2)// 
-        return 0;
-    }
-
-
-    if (check_box(i, j, keypress) === 0) {
-        // console.log(3)// 
-        return 0;
-    }
-
-    return 11;
-
-    function check_row(row, column, keypress) {
-        for (let j = 0; j < 9; j++) {
-            if (user[row][j] === keypress)
-                return 0;
-
-        }
-        return 1;
-    }
-
-    function check_column(row, column, keypress) {
-        for (let j = 0; j < 9; j++) {
-            if (user[j][column] === keypress)
-                return 0;
-
-        }
-        return 1;
-
-    }
-
-    function check_box(row, column, keypress) {
-        row -= row % 3;
-        column -= column % 3;
-        // console.log(row + " " + column);
-        for (let i = row; i < row + 3; i++) {
-            for (let j = column; j < column + 3; j++) {
-                if (user[i][j] === keypress)
-                    return 0;
-            }
-        }
-        return 1;
-
-    }
-
+    return 1;
 }
-
 
 //    <!------------------------------- check for a user input ---------------------------/>
 
@@ -435,8 +389,10 @@ function myKeyPress(e, id) {
             document.getElementById(id).style.backgroundColor = "white";
         }
         else if (user[id[0] - '1'][id[1] - '1'] === '*') {
+            let rw_data = id[0] -'1';
+            let cl_data = id[1] -'1';
 
-            let ok = check_input(id, num_pressed);// To check if the no. entered is correct or not
+            let ok = check(user,rw_data ,cl_data, num_pressed);// To check if the no. entered is correct or not
             user[id[0] - '1'][id[1] - '1'] = num_pressed; 
 
             if (!ok) // if no is not correct ,we change bg color to red
