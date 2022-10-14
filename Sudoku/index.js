@@ -29,6 +29,9 @@ function find_input_box(cnt_display) {
     let z = 0;
     let all_indeces = new Array(81);
 
+    // This loop is for storing the id's of input cells of the matrices
+    // in a 1d Array all_indeces whose size is equal to the total blocks
+    // present in the matrices
     for (i = 0; i < 9; i++) {
         for (j = 0; j < 9; j++) {
             all_indeces[z] = i * 10 + j;
@@ -37,12 +40,18 @@ function find_input_box(cnt_display) {
     }
     let maxi = 81;
 
+    // Math.floor(Math.random() * (myMax - myMin + 1) + myMin); ->
+    // this function gives a random value bw myMax and myMin .
     for (z = 0; z < input_cnt; z++) {
+
         let randm = Math.floor(Math.random() * (maxi + 1));
+        // This random no is used to get the id of the cell of the matrice for which
+        // we will provide an input element .   
 
+        let rw = Math.floor(all_indeces[randm] / 10); // row no.
+        let cl = Math.floor(all_indeces[randm] % 10); // column no.
+        // for example randm=74 then rw=74/10=7 and cl=74%10=4
 
-        let cl = Math.floor(all_indeces[randm] % 10);
-        let rw = Math.floor(all_indeces[randm] / 10);
 
         hashmap[rw][cl] = 0;
 
@@ -51,6 +60,11 @@ function find_input_box(cnt_display) {
 
         let temp = new Array(maxi - 1);
 
+        // now we have to delete the randm no from the indeces.
+        // So ,that when we again search for a randm no then we don't get again the same
+        // randm no.
+        // here the concept of delete ,assigning. 
+        //deleting(from all indeces[]) -> Assigining(to temp array) ->Assigining(back to all_indeces[])
         for (i = 0; i < maxi; i++) {
             if (i == randm)
                 i++;
@@ -109,6 +123,7 @@ function matrix_initialization() {
         // console.log(trail[i]);
     }
 
+    // Here we are initializing the checker array from the trial matrix
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             if (hashmap[i][j] === 0)
@@ -119,7 +134,7 @@ function matrix_initialization() {
         // console.log(checker[i]);
     }
 
-
+    // Here we are initializing the User  array from the trial matrix
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             if (hashmap[i][j] === 0)
@@ -132,6 +147,8 @@ function matrix_initialization() {
 
     // matrix value assigned  - end   
     create_table();
+    // This function generates a 9*9 matrix on the html page by taking values from
+    // checker matrix.
 }
 
 
@@ -150,17 +167,6 @@ let level = 0;
 // when level = 2 difficulty level => Hard
 let duration;
 let cnt_display = 30;
-function hard1(event) {
-    level = 2;
-    duration = 1500; // duration are in seconds.
-    cnt_display = 30 + Math.floor((Math.random() * 10)); // generate random value 30-40 
-    find_input_box(cnt_display);
-    matrix_initialization();
-    console.log(cnt_display);
-    // document.getElementById("mode").innerHTML="Hard";
-    // document.getElementById("alloted").innerHTML="25 min";
-}
-
 function easy1() {
     level = 0;
     duration = 600; // duration are in seconds.
@@ -170,7 +176,7 @@ function easy1() {
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Easy";
     // document.getElementById("alloted").innerHTML="10 min";
-    
+
 }
 function medium1() {
     level = 1;
@@ -182,6 +188,19 @@ function medium1() {
     // document.getElementById("mode").innerHTML="Medium";
     // document.getElementById("alloted").innerHTML="18 min";
 }
+function hard1(event) {
+    level = 2;
+    duration = 1500; // duration are in seconds.
+    cnt_display = 30 + Math.floor((Math.random() * 10)); // generate random value 30-40 
+    find_input_box(cnt_display);
+    matrix_initialization();
+    console.log(cnt_display);
+    // document.getElementById("mode").innerHTML="Hard";
+    // document.getElementById("alloted").innerHTML="25 min";
+}
+
+
+
 
 document.getElementById('easy').addEventListener('click', easy1);
 document.getElementById('medium').addEventListener('click', medium1);
@@ -219,28 +238,29 @@ function create_table() {
     // function declaration (this is the main part which creates the table of size(9x9))
     // console.log("creating table");
     table = undefined;
-     
+
     // console.log(table);
     table = document.createElement('table');
 
     // very important  this part used to load diff matrix for (easy , med , hard) 
-    let mat = document.querySelector('.matrix'); 
+    let mat = document.querySelector('.matrix');
     console.log(mat.childElementCount);
 
-    let element = document.querySelector('.matrix'); 
+    let element = document.querySelector('.matrix');
     while (element.firstChild) {
-      element.removeChild(element.firstChild);
+        element.removeChild(element.firstChild);
     }
     mat.appendChild(table);
     ////// do'nt delete 
-    
+
 
     let tbody = document.createElement('tbody');
-    
+
     table.appendChild(tbody);
 
     for (i = 1; i <= 9; i++) {
 
+        // creating ith row for the matrix 
         var row = document.createElement("tr");
 
         for (j = 1; j <= 9; j++) {
@@ -273,11 +293,10 @@ function create_table() {
             }
             else {
                 cell.innerHTML = inp;
-
                 // document.querySelector("#cell_id input").style.color= "red";
             }
 
-
+            // This is the css part (by js)for construction of a particular cell   
             if (i % 3 == 0 && j % 3 == 0)
                 cell.setAttribute("style", "border-right:3px solid black ;border-bottom:3px solid black;");
             else if (i % 3 == 0 && j % 3 != 0)
@@ -302,39 +321,6 @@ function create_table() {
 
 
 //                  <!------------------------check for a user input ----------------------------/>
-
-function check_row(row, column, keypress) {
-    for (let j = 0; j < 9; j++) {
-        if (user[row][j] === keypress)
-            return 0;
-
-    }
-    return 1;
-}
-
-function check_column(row, column, keypress) {
-    for (let j = 0; j < 9; j++) {
-        if (user[j][column] === keypress)
-            return 0;
-
-    }
-    return 1;
-
-}
-
-function check_box(row, column, keypress) {
-    row -= row % 3;
-    column -= column % 3;
-    // console.log(row + " " + column);
-    for (let i = row; i < row + 3; i++) {
-        for (let j = column; j < column + 3; j++) {
-            if (user[i][j] === keypress)
-                return 0;
-        }
-    }
-    return 1;
-
-}
 
 function check_input(id, keypress) {
     let ok = 1;
@@ -361,7 +347,38 @@ function check_input(id, keypress) {
 
     return 11;
 
-    //boxcheck
+    function check_row(row, column, keypress) {
+        for (let j = 0; j < 9; j++) {
+            if (user[row][j] === keypress)
+                return 0;
+
+        }
+        return 1;
+    }
+
+    function check_column(row, column, keypress) {
+        for (let j = 0; j < 9; j++) {
+            if (user[j][column] === keypress)
+                return 0;
+
+        }
+        return 1;
+
+    }
+
+    function check_box(row, column, keypress) {
+        row -= row % 3;
+        column -= column % 3;
+        // console.log(row + " " + column);
+        for (let i = row; i < row + 3; i++) {
+            for (let j = column; j < column + 3; j++) {
+                if (user[i][j] === keypress)
+                    return 0;
+            }
+        }
+        return 1;
+
+    }
 
 }
 
@@ -400,27 +417,33 @@ function myKeyPress(e, id) {
 
     if (((e.keyCode) > 48 && (e.keyCode) <= 57) || ((e.keyCode) > 96 && (e.keyCode) <= 105) || e.keyCode == 8) {
 
-        let num_pressed;
-
-        if ((e.keyCode) > 48 && (e.keyCode) <= 57)
-            num_pressed = e.keyCode - 48;
+        
+        let num_pressed;// To get the actual no. which pressed either from numbers or from numpad
+    
         if ((e.keyCode) > 96 && (e.keyCode) <= 105)
-            num_pressed = e.keyCode - 96;
+            num_pressed = e.keyCode - 96;// when a number from numpad is pressed
+        
+        if ((e.keyCode) > 48 && (e.keyCode) <= 57)
+            num_pressed = e.keyCode - 48; // when a number from numbers/upper row is pressed
+        
 
 
-        if (e.keyCode == 8) {
+        if (e.keyCode == 8) // keyCode of backspace
+        { 
             user[id[0] - '1'][id[1] - '1'] = '*';
             document.getElementById(id).style.backgroundColor = "white";
         }
         else if (user[id[0] - '1'][id[1] - '1'] === '*') {
 
-            let ok = check_input(id, num_pressed);
-            user[id[0] - '1'][id[1] - '1'] = num_pressed;
+            let ok = check_input(id, num_pressed);// To check if the no. entered is correct or not
+            user[id[0] - '1'][id[1] - '1'] = num_pressed; 
 
-            if (!ok) {
+            if (!ok) // if no is not correct ,we change bg color to red
+            {
                 document.getElementById(id).style.backgroundColor = "#FF5D5D";
             }
-            else {
+            else // if it is correct  ,no change.
+             {
                 document.getElementById(id).style.backgroundColor = "white";
             }
         }
@@ -457,11 +480,11 @@ function startTimer(duration, display) {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         display.innerHTML = minutes + ":" + seconds;
-           
+
         if (timer === -1) {
-            display.style.backgroundColor="red";
-            display.innerHTML ="Time is Up!";
-             clearInterval(myinterval);
+            display.style.backgroundColor = "red";
+            display.innerHTML = "Time is Up!";
+            clearInterval(myinterval);
 
             /*  timer = duration; */ // uncomment this line to reset timer automatically after reaching 0
         }
