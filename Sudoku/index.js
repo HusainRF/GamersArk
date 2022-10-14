@@ -1,4 +1,4 @@
-//            <!-------------- Random cells will be selected for getting unique salon   ----------/>
+//            <!---------------- Random cells will be selected for getting unique salon  ----------------/>
 
 
 
@@ -13,8 +13,8 @@ for (var i = 0; i < 9; i++) {
 
 function find_input_box(cnt_display) {
 
-    // in hashmao 0 indicates -> requires input element 
-    // in hashmao 1 indicates -> it should have fixed value - disaplyed
+    // in hashmap 0 indicates -> requires input element 
+    // in hashmap 1 indicates -> it should have fixed value - displayed
     for (var i = 0; i < 9; i++) {
         for (j = 0; j < 9; j++) {
             hashmap[i][j] = 1;
@@ -66,7 +66,7 @@ function find_input_box(cnt_display) {
 }
 
 
-//            <!-------------- random input cell selceted for a unique problem ----------/>
+//            <!-------------- random input cell selected for a unique problem ----------/>
 
 
 
@@ -155,6 +155,7 @@ function hard1(event) {
     cnt_display = 30 + Math.floor((Math.random() * 10)); // generate random value 30-40 
     find_input_box(cnt_display);
     matrix_initialization();
+    alert("Hard Level");
     console.log(cnt_display);
 }
 
@@ -170,6 +171,7 @@ function medium1() {
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
     find_input_box(cnt_display);
     matrix_initialization();
+    alert("Medium Level");
     console.log(cnt_display);
 }
 
