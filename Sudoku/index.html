@@ -53,6 +53,7 @@
                             <li><button id="easy" class="dropdown-item">Easy</button></li>
                             <li><button id="medium" class="dropdown-item">Medium</button></li>
                             <li><button id="hard" class="dropdown-item">Hard</button></li>
+                            <li><button id="custom" class="dropdown-item">custom</button></li>
                         </ul>
                     </li>
 
@@ -73,16 +74,40 @@
     </div>
 
     <!-- game Heading -->
+    <!-- temp -->
+    <div class="container row align-item-center">
+        <!-- Mode col -->
+        <!-- <div class="col-lg-2 grid">
+            <h1 id="mode"></h1>
+        </div> -->
+        <!-- Mode col -->
 
 
+        <!--Alloted Time col-->
+        <!-- <div class="col-lg-2 grid">
+            <h1 id="alloted"></h1>
+        </div> -->
+        <!--Alloted Time col-->
+
+
+        <!-- timer col -->
+        <div class="col-lg-2 col-sm-6 grid">
+            <h1 id="timer2"> 00:00 </h1>
+        </div>
+        <!-- timer col -->
+
+
+        <!-- Timer row -->
+    </div>
+    <!-- temp -->
     <!-- grid row -->
     <div class="row align-item-center">
 
         <div class="col-lg-2 col-sm-12 grid">
             <!-- timer row -->
             <div class="container d-flex m-2 justify-content-left ">
-                <button type="button" class="btn btn-primary ">countdown</button>
-                <h1 id="timer2"></h1>
+                <!-- <button type="button" class="btn btn-primary ">countdown</button> -->
+                <h1></h1>
             </div>
 
             <!-- timer row -->
@@ -102,9 +127,8 @@
                     </div>
 
                     <div class="d-flex justify-content-center play-btn ">
-                        <button type="button" class="btn m-2 btn-secondary " id="strt" onclick ="f1();this.disabled=true;">start</button>
-                        <button type="button" class="btn m-2 btn-secondary"  id="resume" >resume temp</button>
-                        <button type="button" class="btn m-2 btn-primary " id ="pause" >pause</button>
+                        <button type="button" class="btn m-2 btn-secondary " id="strt" onclick=f1()>start</button>
+                        
                     </div>
                 </div>
 
@@ -120,14 +144,14 @@
     <!-- grid row end  -->
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/b1825cf585.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="index.js"></script>
-
+    <script src="find_input_cell.js"></script>
 </body>
 
 </html>
