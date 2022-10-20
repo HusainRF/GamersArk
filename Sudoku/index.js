@@ -268,10 +268,9 @@ function medium1() {
     level = 1;
     duration = 1080; // duration are in seconds.
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
-    find_input_box(cnt_display);
-    matrix_initialization();
-    alert("Medium Level");
-    console.log(cnt_display);
+   
+    confirm_box();
+    
     // document.getElementById("mode").innerHTML="Medium";
     // document.getElementById("alloted").innerHTML="18 min";
 }
@@ -279,14 +278,23 @@ function hard1(event) {
     level = 2;
     duration = 1500; // duration are in seconds.
     cnt_display = 30 + Math.floor((Math.random() * 10)); // generate random value 30-40 
-    find_input_box(cnt_display);
-    matrix_initialization();
-    alert("Hard Level");
-    console.log(cnt_display);
+    confirm_box();
     // document.getElementById("mode").innerHTML="Hard";
     // document.getElementById("alloted").innerHTML="25 min";
 }
-
+//              <!---------------------------Confirmation box----------------------------------/>
+function confirm_box() {
+    var txt;
+    if (confirm("Do you wish to change a level?")) {
+        find_input_box(cnt_display);
+        matrix_initialization();
+        console.log(cnt_display);
+    
+    }
+    document.getElementById('easy').innerHTML="Easy";
+document.getElementById('medium').innerHTML="Medium";
+document.getElementById('hard').innerHTML="Hard";
+}
 
 
 
