@@ -111,7 +111,7 @@ function find_input_box(cnt_display) {
     // let cnt_display=30; /// for comment
     // console.log(cnt_display);
     let input_cnt = 81 - cnt_display;
-
+    pop_counter=input_cnt;
     let z = 0;
     let all_indeces = new Array(81);
 
@@ -166,9 +166,25 @@ function find_input_box(cnt_display) {
 }
 
 
+
+
 //            <!-------------- random input cell selected for a unique problem ----------/>
 
+// pop-up call here
+// var myModal = document.getElementById('myModal')
+// var myInput = document.getElementById('myInput')
 
+// myModal.addEventListener('shown.bs.modal', function () {
+//   myInput.focus()
+// })
+let pop_counter;
+
+
+
+
+
+
+// pop-up call here
 
 
 
@@ -259,6 +275,7 @@ function easy1() {
     cnt_display = 50 + Math.floor((Math.random() * 10)); // generate random value 50-60
     find_input_box(cnt_display);
     matrix_initialization();
+    
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Easy";
     // document.getElementById("alloted").innerHTML="10 min";
@@ -535,6 +552,14 @@ function startTimer(duration, display) {
         if (timer === -1) {
             display.style.backgroundColor = "red";
             display.innerHTML = "Time is Up!";
+            if(pop_counter==0)
+            {
+               
+            }
+            else
+            {
+
+            }
             clearInterval(myinterval);
 
             /*  timer = duration; */ // uncomment this line to reset timer automatically after reaching 0
