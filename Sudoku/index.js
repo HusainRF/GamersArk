@@ -328,57 +328,72 @@ function check_input(id, keypress) {
     let j = id[1] - '1';
 
 
-    if (check_row(i, j, keypress) === 0) {
-        // console.log(1)// 
-        return 0;
-    }
-
-    if (check_column(i, j, keypress) === 0) {
-
-        // console.log(2)// 
-        return 0;
-    }
-
-
-    if (check_box(i, j, keypress) === 0) {
-        // console.log(3)// 
-        return 0;
-    }
-
-    return 11;
-
-    function check_row(row, column, keypress) {
-        for (let j = 0; j < 9; j++) {
-            if (user[row][j] === keypress)
-                return 0;
-
+    return check(i,j,keypress);
+    function check(row, col,keypress)
+    {
+        for(i=0;i<9;i++)
+        {
+            if(user[i][col]===keypress)
+            return 0;
+            if(user[row][i]===keypress)
+            return 0;
+            if(user[3*(row/3)+i/3][3*(col/3)+i%3] === keypress)
+            return 0;
         }
         return 1;
     }
+    
+    // if (check_row(i, j, keypress) === 0) {
+    //     // console.log(1)// 
+    //     return 0;
+    // }
 
-    function check_column(row, column, keypress) {
-        for (let j = 0; j < 9; j++) {
-            if (user[j][column] === keypress)
-                return 0;
+    // if (check_column(i, j, keypress) === 0) {
 
-        }
-        return 1;
+    //     // console.log(2)// 
+    //     return 0;
+    // }
 
-    }
 
-    function check_box(row, column, keypress) {
-        row -= row % 3;
-        column -= column % 3;
-        // console.log(row + " " + column);
-        for (let i = row; i < row + 3; i++) {
-            for (let j = column; j < column + 3; j++) {
-                if (user[i][j] === keypress)
-                    return 0;
-            }
-        }
-        return 1;
+    // if (check_box(i, j, keypress) === 0) {
+    //     // console.log(3)// 
+    //     return 0;
+    // }
+    
+    // return 11;
 
-    }
+    // function check_row(row, column, keypress) {
+    //     for (let j = 0; j < 9; j++) {
+    //         if (user[row][j] === keypress)
+    //             return 0;
+
+    //     }
+    //     return 1;
+    // }
+
+    // function check_column(row, column, keypress) {
+    //     for (let j = 0; j < 9; j++) {
+    //         if (user[j][column] === keypress)
+    //             return 0;
+
+    //     }
+    //     return 1;
+
+    
+
+    // function check_box(row, column, keypress) {
+    //     row -= row % 3;
+    //     column -= column % 3;
+    //     // console.log(row + " " + column);
+    //     for (let i = row; i < row + 3; i++) {
+    //         for (let j = column; j < column + 3; j++) {
+    //             if (user[i][j] === keypress)
+    //                 return 0;
+    //         }
+    //     }
+    //     return 1;
+
+    // }
 
 }
 

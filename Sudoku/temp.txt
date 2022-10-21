@@ -1,0 +1,18 @@
+if(check(i,j,keypress))
+return 1;
+else
+return 0;
+
+check(row, col,keypress)
+{
+    for(i=0;i<9;i++)
+    {
+        if(user[i][col]==keypress)
+        return 0;
+        if(user[row][i]==keypress)
+        return 0;
+        if(user[3*(row/3)+i/3][3*(col/3)+col%3] == keypress)
+        return 0;
+    }
+    return 1;
+}
