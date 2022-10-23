@@ -60,7 +60,7 @@ function generate_diagonal() {
 
     remain_matrix_generator();
 
-    console.log(matrix_quest);
+    // console.log(matrix_quest);
 }
 
 
@@ -168,7 +168,7 @@ function find_input_box(cnt_display) {
         maxi--;
     }
 
-    console.log(hashmap);
+    // console.log(hashmap);
 }
 
 
@@ -182,8 +182,8 @@ let pop_counter, correct;
 function check_correctness()   // this function is used to check the correctness of the user input when the timer  over or submit button is clicked
 {
     let flag1=0;
-    if(count_tot_input!=0)
-    flag1=1;
+    if(count_tot_input!=0 || timer == 0)
+    flag1 = 1;
 
     if (flag1 == 0) {
         document.getElementById("stats1").innerHTML = "Victory";
@@ -195,7 +195,7 @@ function check_correctness()   // this function is used to check the correctness
     }
     else {
         document.getElementById("stats1").innerHTML = "You Lost";
-        document.getElementById("stats2").innerHTML = "Take a breath and start again";
+        document.getElementById("stats2").innerHTML = "Take a breath and start again <br><br>  <p>If you're frustrated.... Play again after pressing the start button. </p>";
         document.getElementById("stats3").innerHTML = "previous level";
         document.getElementById("stats4").innerHTML = "Retry";
 
@@ -323,7 +323,6 @@ function matrix_initialization() {
     user_mistake_counter = 0;
     document.getElementById("mistakes_to_display").innerHTML = "Mistakes : " + user_mistake_counter;
     create_table();
-    hide_input(timer);
     // This function generates a 9*9 matrix on the html page by taking values from
     // checker matrix.
 }
@@ -396,7 +395,7 @@ function confirm_box() {
       
         find_input_box(cnt_display);
         matrix_initialization();
-        console.log(cnt_display);
+        // console.log(cnt_display);
 
     }
    
@@ -426,9 +425,7 @@ table = document.createElement('table');
 
 function checkInput(ob) {
     //to check input should be 1-9
-    console.log(timer);
-    if(timer == 0)
-      return false;
+    // console.log(timer);
 
     var invalidChars = /[^1-9]/gi
     if (invalidChars.test(ob.value)) {
@@ -451,7 +448,7 @@ function create_table() {
 
     // very important  this part used to load diff matrix for (easy , med , hard) 
     let mat = document.querySelector('.matrix');
-    console.log(mat.childElementCount);
+    // console.log(mat.childElementCount);
 
     let element = document.querySelector('.matrix');
     while (element.firstChild) {
@@ -596,7 +593,10 @@ function myKeyPress(e, id) {
 
 
         }
-        else if (user[id[0] - '1'][id[1] - '1'] === '*' && timer != 0) {
+        else if(timer == 0){
+            alert("\nFirst click the start button to record your moves.... \n\nplease undo all your recent action!!!")
+        }
+        else if (user[id[0] - '1'][id[1] - '1'] === '*'  ) {
             let rw_data = id[0] - '1';
             let cl_data = id[1] - '1';
 
@@ -618,7 +618,7 @@ function myKeyPress(e, id) {
             }
         }
 
-        console.log(user);
+        // console.log(user);
     }
 
 }
