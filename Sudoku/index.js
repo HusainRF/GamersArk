@@ -320,7 +320,10 @@ function matrix_initialization() {
 
 
     // matrix value assigned  - end   
+    user_mistake_counter = 0;
+    document.getElementById("mistakes_to_display").innerHTML = "Mistakes : " + user_mistake_counter;
     create_table();
+    hide_input(timer);
     // This function generates a 9*9 matrix on the html page by taking values from
     // checker matrix.
 }
@@ -348,6 +351,8 @@ function easy1() {
     level = 0;
     duration = 300; // duration are in seconds.
     cnt_display = 50 + Math.floor((Math.random() * 10)); // generate random value 50-60
+   
+
     // chnge_mode=level
     if(first_time_easy_check==0){
     find_input_box(cnt_display);
@@ -355,7 +360,8 @@ function easy1() {
     first_time_easy_check=1;}
     else
     confirm_box();
-    console.log(cnt_display);
+    document.getElementById("medium_to_display").innerHTML = "Mode : easy" ;
+    
     // document.getElementById("mode").innerHTML="Easy";
     // document.getElementById("alloted").innerHTML="10 min";
 
@@ -365,10 +371,9 @@ function medium1() {
     duration = 1080; // duration are in seconds.
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
     // chnge_mode=level
-
-
+     
     confirm_box();
- 
+    document.getElementById("medium_to_display").innerHTML = "Mode : Medium" ;
     // document.getElementById("mode").innerHTML="Medium";
     // document.getElementById("alloted").innerHTML="18 min";
 }
@@ -380,6 +385,7 @@ function hard1(event) {
 
     confirm_box();
    
+    document.getElementById("medium_to_display").innerHTML = "Mode : Hard" ;
     // document.getElementById("mode").innerHTML="Hard";
     // document.getElementById("alloted").innerHTML="25 min";
 }
@@ -420,6 +426,10 @@ table = document.createElement('table');
 
 function checkInput(ob) {
     //to check input should be 1-9
+    console.log(timer);
+    if(timer == 0)
+      return false;
+
     var invalidChars = /[^1-9]/gi
     if (invalidChars.test(ob.value)) {
         // alert("only numerical");
@@ -427,6 +437,7 @@ function checkInput(ob) {
         ob.value = ob.value.replace(invalidChars, "");
         return false;
     }
+    
     return true;
 }
 
@@ -536,11 +547,9 @@ function check(matrix_to_check, row, col, keypress) {
 
 
 
-
-
-
-
 //     <!--------------------------- user input — listener --------------------------------/>
+
+let user_mistake_counter = 0;
 
 // Recording which no. is entered in which cell of matrix 
 function myKeyPress(e, id) {
@@ -587,7 +596,7 @@ function myKeyPress(e, id) {
 
 
         }
-        else if (user[id[0] - '1'][id[1] - '1'] === '*') {
+        else if (user[id[0] - '1'][id[1] - '1'] === '*' && timer != 0) {
             let rw_data = id[0] - '1';
             let cl_data = id[1] - '1';
 
@@ -598,6 +607,8 @@ function myKeyPress(e, id) {
             if (!ok) // if number is not correct ,we change bg color to red
             {
                 document.getElementById(id).style.backgroundColor = "#FF5D5D";
+                user_mistake_counter++;
+                document.getElementById("mistakes_to_display").innerHTML ="Mistakes : " + user_mistake_counter;
             }
             else // if it is correct  ,no change.
             {
@@ -607,7 +618,7 @@ function myKeyPress(e, id) {
             }
         }
 
-        // console.log(user);
+        console.log(user);
     }
 
 }
@@ -632,9 +643,9 @@ function f5()   // This function is invoked when the user tries to submit the re
 
 //      <!---------------------------Countdown-Timer started-------------------------------/>
 
-var timer=0;
+var timer = 0;
 function f1() {
-    if(timer<=0)
+    if(timer <= 0)
     startTimer(duration, timer2);
 }
 
@@ -653,7 +664,7 @@ function startTimer(duration, display) {
         if (chnge_mode != level || submit_btn_clicked==1) {
             chnge_mode = level;
             submit_btn_clicked=0;
-            timer=0;
+            timer = 0;
             // display.innerHTML = "00 " +":" +" 00";
             clearInterval(myinterval);
             // console.log("reached ");
