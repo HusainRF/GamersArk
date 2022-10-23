@@ -95,6 +95,7 @@ for (var i = 0; i < 9; i++) {
     hashmap[i] = new Array(9);
 }
 
+let count_tot_input; // varibale for storing total no. of input cell
 
 // function which selects k cell, in which we put <input> element
 
@@ -113,7 +114,10 @@ function find_input_box(cnt_display) {
     // console.log(cnt_display);
     let input_cnt = 81 - cnt_display;
     pop_counter = input_cnt;
+    count_tot_input = input_cnt;
+
     correct = 0;
+    
     let z = 0;
     let all_indeces = new Array(81);
 
@@ -236,6 +240,13 @@ for (var i = 0; i < checker.length; i++) {
     checker[i] = new Array(9);
 
 }
+
+var check_right_input = new Array(9); // confusion aaray
+for (var i = 0; i < check_right_input.length; i++) {
+    check_right_input[i] = new Array(9);
+
+}
+
 // matrix declaration ended
 
 
@@ -272,6 +283,14 @@ function matrix_initialization() {
         }
         // console.log(user[i]);
     }
+
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+                check_right_input[i][j] = 0;
+        }
+        // console.log(user[i]);
+    }
+
 
     // matrix value assigned  - end   
     create_table();
@@ -521,6 +540,11 @@ function myKeyPress(e, id) {
 
         if (e.keyCode == 8) // keyCode of backspace
         {
+            if(check_right_input[id[0] - '1'][id[1] - '1'] === 1) // right input removed
+              count_tot_input++;
+
+            check_right_input[id[0] - '1'][id[1] - '1'] = 0;
+            
             user[id[0] - '1'][id[1] - '1'] = '*';
             document.getElementById(id).style.backgroundColor = "white";
 
@@ -536,13 +560,12 @@ function myKeyPress(e, id) {
 
             if (!ok) // if number is not correct ,we change bg color to red
             {
-
                 document.getElementById(id).style.backgroundColor = "#FF5D5D";
             }
             else // if it is correct  ,no change.
             {
-
-
+                check_right_input[id[0] - '1'][id[1] - '1'] = 1;
+                count_tot_input -- ; // decrease cnt by 1 because right input inserted
                 document.getElementById(id).style.backgroundColor = "white";
             }
         }
