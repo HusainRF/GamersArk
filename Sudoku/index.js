@@ -317,7 +317,7 @@ let cnt_display = 30;
 function easy1() {
 
     level = 0;
-    duration = 5; // duration are in seconds.
+    duration = 150; // duration are in seconds.
     cnt_display = 50 + Math.floor((Math.random() * 10)); // generate random value 50-60
     find_input_box(cnt_display);
     matrix_initialization();
@@ -619,55 +619,8 @@ function startTimer(duration, display) {
             let flag1 = 0;
 
 
-            // to finall check the matrix if it is completely filled and also correctly filled
-            // for (let t = 0; t < 9; t++) {
-            //     for (let u = 0; u < 9; u++) {
-            //         if (user[t][u] === '*') {
-            //             flag1 = 1;
-            //             break;
-            //         }
-            //         let x, y;
-            //         for (x = 0; x < 9; x++) // column check
-            //         {
-            //             if (x != u) {
-            //                 if (user[t][x] === user[t][u])
-            //                     flag1 = 1;
-            //                 break;
-            //             }
-            //         }
-            //         for (x = 0; x < 9; x++)  // row check
-            //         {
-            //             if (x != t) {
-            //                 if (user[x][u] === user[t][u])
-            //                     flag1 = 1;
-            //                 break;
-            //             }
-            //         }
-            //         for (x = 3 * Math.floor(t / 3); x < 3 * Math.floor(t / 3) + 3; i++) // box check
-            //         {
-            //             for (y = 3 * Math.floor(u / 3); y < 3 * Math.floor(u / 3) + 3; y++) {
-            //                 if (x != t && y != u) {
-            //                     if (user[x][y] === user[t][u]) {
-            //                         flag1 = 1;
-            //                         break;
-            //                     }
-            //                 }
-            //             }
-            //             if (flag1==1)
-            //                 break;
-
-            //         }
-
-
-            //         if (flag1 == 1)
-            //             break;
-
-            //     }
-            //     if (flag1 == 1)
-            //         break;
-            // }
-            console.log(flag1);
-            //above check function is used;
+            if(count_tot_input!=0)
+            flag1=1;
 
             if (flag1 == 0) {
                 document.getElementById("stats1").innerHTML = "Victory";
