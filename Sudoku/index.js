@@ -207,7 +207,7 @@ function check_correctness()   // this function is used to check the correctness
 
 }
 function f2() {   // this is used to  change level
-    if (pop_counter != 0) {             // if everything is right then promote to new level 
+    if (count_tot_input == 0) {             // if everything is right then promote to new level 
         if (level == 0) {
             medium1();
         }
@@ -342,14 +342,19 @@ let level = 0;
 let duration;
 let cnt_display = 30;
 chnge_mode=0;
+let first_time_easy_check=0;
 function easy1() {
 
     level = 0;
     duration = 300; // duration are in seconds.
     cnt_display = 50 + Math.floor((Math.random() * 10)); // generate random value 50-60
     // chnge_mode=level
+    if(first_time_easy_check==0){
     find_input_box(cnt_display);
     matrix_initialization();
+    first_time_easy_check=1;}
+    else
+    confirm_box();
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Easy";
     // document.getElementById("alloted").innerHTML="10 min";
@@ -388,9 +393,7 @@ function confirm_box() {
         console.log(cnt_display);
 
     }
-    document.getElementById('easy').innerHTML = "Easy";
-    document.getElementById('medium').innerHTML = "Medium";
-    document.getElementById('hard').innerHTML = "Hard";
+   
 }
 
 
@@ -629,26 +632,31 @@ function f5()   // This function is invoked when the user tries to submit the re
 
 //      <!---------------------------Countdown-Timer started-------------------------------/>
 
-
+var timer=0;
 function f1() {
+    if(timer<=0)
     startTimer(duration, timer2);
 }
 
 // var pause = true;
 chnge_mode = 0;
 function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
+     timer = duration;
+    var  minutes, seconds;
+   
     let myinterval = setInterval(myTimer, 1000);
     display.style.backgroundColor = "white";
-
+//   console.log(timer);
 
     function myTimer() {
-        console.log(chnge_mode);
+        // console.log(chnge_mode);
         if (chnge_mode != level || submit_btn_clicked==1) {
             chnge_mode = level;
             submit_btn_clicked=0;
-            display.innerHTML = timer;
+            timer=0;
+            // display.innerHTML = "00 " +":" +" 00";
             clearInterval(myinterval);
+            // console.log("reached ");
             
         }
         minutes = parseInt(timer / 60, 10)
@@ -661,6 +669,7 @@ function startTimer(duration, display) {
         // console.log(pop_counter);
 
         if (timer === -1) {
+            // timer=0;
             display.style.backgroundColor = "red";
             display.innerHTML = "Time is Up!";
             check_correctness();
