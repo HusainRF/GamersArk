@@ -175,8 +175,8 @@ function find_input_box(cnt_display) {
 // pop-up call here
 
 let pop_counter, correct;
-function f2() {
-    if (pop_counter == 0) {
+function f2() {   // this is used to promote to  change level
+    if (pop_counter != 0) {             // if everything is right then promote to new level 
         if (level == 0) {
             medium1();
         }
@@ -184,7 +184,7 @@ function f2() {
             hard1();
 
     }
-    else {
+    else {                          // else take the user to prev level
         if (level == 2) {
             medium1();
         }
@@ -193,7 +193,7 @@ function f2() {
     }
 
 }
-function f3() {
+function f3() {              // it used as a retry button 
     if (level == 0)
         easy1();
     else if (level == 1)
@@ -310,7 +310,7 @@ function easy1() {
 }
 function medium1() {
     level = 1;
-    duration = 1080; // duration are in seconds.
+    duration = 2; // duration are in seconds.
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
 
     confirm_box();
