@@ -210,6 +210,14 @@
     <!-- grid row end  -->
     <!-- Vertically centered modal -->
 
+<!-- Vertically centered modal -->
+  <!-- Modal -->
+  <div class=" modal fade" id="simpleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id= "stats1" class="modal-title" id="exampleModalLabel">Congratulations </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
@@ -232,7 +240,17 @@
                 </div>
             </div>
         </div>
+        <div id= "stats2" class="modal-body">
+            You have completed this level
+        </div>
+        <div class="modal-footer">
+            <button id= "stats3" type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick=f2()>Retry</button>
+          <button id ="stats4" type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick=f3()>Go to next level </button>
+        </div>
+      </div>
     </div>
+  </div> 
+  
 
 
 

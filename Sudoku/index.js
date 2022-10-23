@@ -16,19 +16,20 @@ function shuffleArray(arr) {
 
 
 
-function generate_diagonal(){
-  
+function generate_diagonal() {
+
     // matrix initialization by zero
-     for( i = 0 ;i < 9 ; i++){
-        for(j =0 ; j< 9 ; j++){
+
+    for (i = 0; i < 9; i++) {
+        for (j = 0; j < 9; j++) {
             matrix_quest[i][j] = 0;
-          }
-     }
+        }
+    }
 
     let possible_input = new Array(9);
-    
-    for( i = 0 ;i < 9 ; i++)
-         possible_input[i] = i+1;
+
+    for (i = 0; i < 9; i++)
+        possible_input[i] = i + 1;
 
     shuffleArray(possible_input);
     let mat_idx = 0;
@@ -36,16 +37,16 @@ function generate_diagonal(){
         for (let j = 0; j < 3; j++) {
             matrix_quest[i][j] = possible_input[mat_idx];
             mat_idx++;
-        }  
+        }
     }
- 
+
     shuffleArray(possible_input);
     mat_idx = 0;
-    for ( i = 3; i <6; i++) {
-        for ( j = 3; j < 6; j++) {
+    for (i = 3; i < 6; i++) {
+        for (j = 3; j < 6; j++) {
             matrix_quest[i][j] = possible_input[mat_idx];
             mat_idx++;
-        }  
+        }
     }
 
     shuffleArray(possible_input);
@@ -54,32 +55,32 @@ function generate_diagonal(){
         for (j = 6; j < 9; j++) {
             matrix_quest[i][j] = possible_input[mat_idx];
             mat_idx++;
-        }  
+        }
     }
 
     remain_matrix_generator();
-    
+
     console.log(matrix_quest);
 }
 
 
-function remain_matrix_generator(){
-    for(let rw_tr = 0 ; rw_tr <9 ; rw_tr++ ){
-        for(let cl_tr = 0 ; cl_tr <9 ; cl_tr++ ){
-            
-            if(matrix_quest[rw_tr][cl_tr] === 0){
-                 for( let num_ch = 1 ; num_ch <= 9 ; num_ch++){
-                      if(  check(matrix_quest,rw_tr, cl_tr, num_ch) === 1 ){
+function remain_matrix_generator() {
+    for (let rw_tr = 0; rw_tr < 9; rw_tr++) {
+        for (let cl_tr = 0; cl_tr < 9; cl_tr++) {
+
+            if (matrix_quest[rw_tr][cl_tr] === 0) {
+                for (let num_ch = 1; num_ch <= 9; num_ch++) {
+                    if (check(matrix_quest, rw_tr, cl_tr, num_ch) === 1) {
                         matrix_quest[rw_tr][cl_tr] = num_ch;
-                          if(remain_matrix_generator() === 1){
+                        if (remain_matrix_generator() === 1) {
                             return 1;
-                          }
-                          else 
-                            matrix_quest[rw_tr][cl_tr] = 0 ;
-                      }
-                 }
-                 
-                 return 0;
+                        }
+                        else
+                            matrix_quest[rw_tr][cl_tr] = 0;
+                    }
+                }
+
+                return 0;
             }
         }
     }
@@ -111,7 +112,8 @@ function find_input_box(cnt_display) {
     // let cnt_display=30; /// for comment
     // console.log(cnt_display);
     let input_cnt = 81 - cnt_display;
-    pop_counter=input_cnt;
+    pop_counter = input_cnt;
+    correct = 0;
     let z = 0;
     let all_indeces = new Array(81);
 
@@ -171,18 +173,42 @@ function find_input_box(cnt_display) {
 //            <!-------------- random input cell selected for a unique problem ----------/>
 
 // pop-up call here
-// var myModal = document.getElementById('myModal')
-// var myInput = document.getElementById('myInput')
 
-// myModal.addEventListener('shown.bs.modal', function () {
-//   myInput.focus()
-// })
-let pop_counter;
+let pop_counter, correct;
+function f2() {
+    if (pop_counter == 0) {
+        if (level == 0) {
+            medium1();
+        }
+        else
+            hard1();
+
+    }
+    else {
+        if (level == 2) {
+            medium1();
+        }
+        else
+            easy1();
+    }
+
+}
+function f3() {
+    if (level == 0)
+        easy1();
+    else if (level == 1)
+        medium1();
+    else
+        hard1();
+
+}
 
 
 
 
 
+
+// pop-up call here
 
 // pop-up call here
 
@@ -270,12 +296,13 @@ let level = 0;
 let duration;
 let cnt_display = 30;
 function easy1() {
+
     level = 0;
-    duration = 600; // duration are in seconds.
+    duration = 5; // duration are in seconds.
     cnt_display = 50 + Math.floor((Math.random() * 10)); // generate random value 50-60
     find_input_box(cnt_display);
     matrix_initialization();
-    
+
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Easy";
     // document.getElementById("alloted").innerHTML="10 min";
@@ -285,9 +312,9 @@ function medium1() {
     level = 1;
     duration = 1080; // duration are in seconds.
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
-   
+
     confirm_box();
-    
+
     // document.getElementById("mode").innerHTML="Medium";
     // document.getElementById("alloted").innerHTML="18 min";
 }
@@ -306,11 +333,11 @@ function confirm_box() {
         find_input_box(cnt_display);
         matrix_initialization();
         console.log(cnt_display);
-    
+
     }
-    document.getElementById('easy').innerHTML="Easy";
-document.getElementById('medium').innerHTML="Medium";
-document.getElementById('hard').innerHTML="Hard";
+    document.getElementById('easy').innerHTML = "Easy";
+    document.getElementById('medium').innerHTML = "Medium";
+    document.getElementById('hard').innerHTML = "Hard";
 }
 
 
@@ -435,16 +462,14 @@ function create_table() {
 
 //                  <!------------------------check for a user input ----------------------------/>
 
-function check(matrix_to_check,row, col,keypress)
-{
-    for(i=0;i<9;i++)
-    {
-        if(matrix_to_check[i][col]===keypress)
-        return 0;
-        if(matrix_to_check[row][i]===keypress)
-        return 0;
-        if(matrix_to_check[(3*(Math.floor(row/3)))+ Math.floor(i/3 )][3*(Math.floor(col/3))+i%3] === keypress)
-        return 0;
+function check(matrix_to_check, row, col, keypress) {
+    for (i = 0; i < 9; i++) {
+        if (matrix_to_check[i][col] === keypress)
+            return 0;
+        if (matrix_to_check[row][i] === keypress)
+            return 0;
+        if (matrix_to_check[(3 * (Math.floor(row / 3))) + Math.floor(i / 3)][3 * (Math.floor(col / 3)) + i % 3] === keypress)
+            return 0;
     }
     return 1;
 }
@@ -483,35 +508,41 @@ function myKeyPress(e, id) {
 
     if (((e.keyCode) > 48 && (e.keyCode) <= 57) || ((e.keyCode) > 96 && (e.keyCode) <= 105) || e.keyCode == 8) {
 
-        
+
         let num_pressed;// To get the actual no. which pressed either from numbers or from numpad
-    
+
         if ((e.keyCode) > 96 && (e.keyCode) <= 105)
             num_pressed = e.keyCode - 96;// when a number from numpad is pressed
-        
+
         if ((e.keyCode) > 48 && (e.keyCode) <= 57)
             num_pressed = e.keyCode - 48; // when a number from numbers/upper row is pressed
-        
+
 
 
         if (e.keyCode == 8) // keyCode of backspace
-        { 
+        {
             user[id[0] - '1'][id[1] - '1'] = '*';
             document.getElementById(id).style.backgroundColor = "white";
+
+
         }
         else if (user[id[0] - '1'][id[1] - '1'] === '*') {
-            let rw_data = id[0] -'1';
-            let cl_data = id[1] -'1';
+            let rw_data = id[0] - '1';
+            let cl_data = id[1] - '1';
 
-            let ok = check(user,rw_data ,cl_data, num_pressed);// To check if the no. entered is correct or not
-            user[id[0] - '1'][id[1] - '1'] = num_pressed; 
+            let ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
+            user[id[0] - '1'][id[1] - '1'] = num_pressed;
+            pop_counter++;
 
-            if (!ok) // if no is not correct ,we change bg color to red
+            if (!ok) // if number is not correct ,we change bg color to red
             {
+
                 document.getElementById(id).style.backgroundColor = "#FF5D5D";
             }
             else // if it is correct  ,no change.
-             {
+            {
+
+
                 document.getElementById(id).style.backgroundColor = "white";
             }
         }
@@ -536,11 +567,20 @@ function f1() {
     startTimer(duration, timer2);
 }
 
-var pause = true;
+// var pause = true;
+chnge_mode = 0;
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     const myinterval = setInterval(myTimer, 1000);
+    display.style.backgroundColor = "white";
+
+
     function myTimer() {
+        if (chnge_mode == 1) {
+            display.innerHTML = "00" + ":" + "00";
+            chnge_mode = 0;
+            clearInterval(myinterval);
+        }
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
 
@@ -548,18 +588,85 @@ function startTimer(duration, display) {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         display.innerHTML = minutes + ":" + seconds;
+        // console.log(pop_counter);
 
         if (timer === -1) {
             display.style.backgroundColor = "red";
             display.innerHTML = "Time is Up!";
-            if(pop_counter==0)
-            {
-               
-            }
-            else
-            {
+            let flag1 = 0;
+
+
+            // to finall check the matrix if it is completely filled and also correctly filled
+            // for (let t = 0; t < 9; t++) {
+            //     for (let u = 0; u < 9; u++) {
+            //         if (user[t][u] === '*') {
+            //             flag1 = 1;
+            //             break;
+            //         }
+            //         let x, y;
+            //         for (x = 0; x < 9; x++) // column check
+            //         {
+            //             if (x != u) {
+            //                 if (user[t][x] === user[t][u])
+            //                     flag1 = 1;
+            //                 break;
+            //             }
+            //         }
+            //         for (x = 0; x < 9; x++)  // row check
+            //         {
+            //             if (x != t) {
+            //                 if (user[x][u] === user[t][u])
+            //                     flag1 = 1;
+            //                 break;
+            //             }
+            //         }
+            //         for (x = 3 * Math.floor(t / 3); x < 3 * Math.floor(t / 3) + 3; i++) // box check
+            //         {
+            //             for (y = 3 * Math.floor(u / 3); y < 3 * Math.floor(u / 3) + 3; y++) {
+            //                 if (x != t && y != u) {
+            //                     if (user[x][y] === user[t][u]) {
+            //                         flag1 = 1;
+            //                         break;
+            //                     }
+            //                 }
+            //             }
+            //             if (flag1==1)
+            //                 break;
+
+            //         }
+
+
+            //         if (flag1 == 1)
+            //             break;
+
+            //     }
+            //     if (flag1 == 1)
+            //         break;
+            // }
+            console.log(flag1);
+            //above check function is used;
+
+            if (flag1 == 0) {
+                document.getElementById("stats1").innerHTML = "Victory";
+                document.getElementById("stats2").innerHTML = "Congratulations you are promoted to next level";
+                document.getElementById("stats3").innerHTML = "Next Level";
+                document.getElementById("stats4").innerHTML = "Retry";
+
 
             }
+            else {
+                document.getElementById("stats1").innerHTML = "You Lost";
+                document.getElementById("stats2").innerHTML = "Take a breath and start again";
+                document.getElementById("stats3").innerHTML = "previous level";
+                document.getElementById("stats4").innerHTML = "Retry";
+
+            }
+            OpenBootstrapPopup();
+            function OpenBootstrapPopup() {
+                $("#simpleModal").modal('show');
+            }
+
+
             clearInterval(myinterval);
 
             /*  timer = duration; */ // uncomment this line to reset timer automatically after reaching 0
