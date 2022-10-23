@@ -1,6 +1,5 @@
 
 body{
-   
 }
 
 /* nav-bar */
@@ -104,4 +103,8 @@ input{
 
 
 
+/* row -> timer , mode , mistakes */
 
+.row_t_m_m{
+    font-size: 1.5rem;
+}
