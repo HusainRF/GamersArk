@@ -179,8 +179,35 @@ function find_input_box(cnt_display) {
 // pop-up call here
 
 let pop_counter, correct;
-function f2() {
-    if (pop_counter == 0) {
+function check_correctness()   // this function is used to check the correctness of the user input when the timer  over or submit button is clicked
+{
+    let flag1=0;
+    if(count_tot_input!=0)
+    flag1=1;
+
+    if (flag1 == 0) {
+        document.getElementById("stats1").innerHTML = "Victory";
+        document.getElementById("stats2").innerHTML = "Congratulations you are promoted to next level";
+        document.getElementById("stats3").innerHTML = "Next Level";
+        document.getElementById("stats4").innerHTML = "Retry";
+
+
+    }
+    else {
+        document.getElementById("stats1").innerHTML = "You Lost";
+        document.getElementById("stats2").innerHTML = "Take a breath and start again";
+        document.getElementById("stats3").innerHTML = "previous level";
+        document.getElementById("stats4").innerHTML = "Retry";
+
+    }
+    OpenBootstrapPopup();
+    function OpenBootstrapPopup() {
+        $("#simpleModal").modal('show');
+    }
+
+}
+function f2() {   // this is used to  change level
+    if (pop_counter != 0) {             // if everything is right then promote to new level 
         if (level == 0) {
             medium1();
         }
@@ -188,7 +215,7 @@ function f2() {
             hard1();
 
     }
-    else {
+    else {                          // else take the user to prev level
         if (level == 2) {
             medium1();
         }
@@ -197,7 +224,7 @@ function f2() {
     }
 
 }
-function f3() {
+function f3() {              // it used as a retry button 
     if (level == 0)
         easy1();
     else if (level == 1)
@@ -314,14 +341,15 @@ let level = 0;
 // when level = 2 difficulty level => Hard
 let duration;
 let cnt_display = 30;
+chnge_mode=0;
 function easy1() {
 
     level = 0;
-    duration = 5; // duration are in seconds.
+    duration = 300; // duration are in seconds.
     cnt_display = 50 + Math.floor((Math.random() * 10)); // generate random value 50-60
+    // chnge_mode=level
     find_input_box(cnt_display);
     matrix_initialization();
-
     console.log(cnt_display);
     // document.getElementById("mode").innerHTML="Easy";
     // document.getElementById("alloted").innerHTML="10 min";
@@ -331,9 +359,11 @@ function medium1() {
     level = 1;
     duration = 1080; // duration are in seconds.
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
+    // chnge_mode=level
+
 
     confirm_box();
-
+ 
     // document.getElementById("mode").innerHTML="Medium";
     // document.getElementById("alloted").innerHTML="18 min";
 }
@@ -341,7 +371,10 @@ function hard1(event) {
     level = 2;
     duration = 1500; // duration are in seconds.
     cnt_display = 30 + Math.floor((Math.random() * 10)); // generate random value 30-40 
+    // chnge_mode=level
+
     confirm_box();
+   
     // document.getElementById("mode").innerHTML="Hard";
     // document.getElementById("alloted").innerHTML="25 min";
 }
@@ -349,6 +382,7 @@ function hard1(event) {
 function confirm_box() {
     var txt;
     if (confirm("Do you wish to change a level?")) {
+      
         find_input_box(cnt_display);
         matrix_initialization();
         console.log(cnt_display);
@@ -580,7 +614,17 @@ function myKeyPress(e, id) {
 
 
 
+// Submit button function
+let submit_btn_clicked=0; // it is flag variable used to bring up the pop up template
+function f5()   // This function is invoked when the user tries to submit the response before timer ==0;
+{
+    submit_btn_clicked=1;  // when user click the submit button  , the timer stops
+    check_correctness();    // to check the correct ness of the user input 
+}
 
+
+
+// Submit button function
 
 
 //      <!---------------------------Countdown-Timer started-------------------------------/>
@@ -594,15 +638,18 @@ function f1() {
 chnge_mode = 0;
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
-    const myinterval = setInterval(myTimer, 1000);
+    let myinterval = setInterval(myTimer, 1000);
     display.style.backgroundColor = "white";
 
 
     function myTimer() {
-        if (chnge_mode == 1) {
-            display.innerHTML = "00" + ":" + "00";
-            chnge_mode = 0;
+        console.log(chnge_mode);
+        if (chnge_mode != level || submit_btn_clicked==1) {
+            chnge_mode = level;
+            submit_btn_clicked=0;
+            display.innerHTML = timer;
             clearInterval(myinterval);
+            
         }
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
@@ -616,80 +663,7 @@ function startTimer(duration, display) {
         if (timer === -1) {
             display.style.backgroundColor = "red";
             display.innerHTML = "Time is Up!";
-            let flag1 = 0;
-
-
-            // to finall check the matrix if it is completely filled and also correctly filled
-            // for (let t = 0; t < 9; t++) {
-            //     for (let u = 0; u < 9; u++) {
-            //         if (user[t][u] === '*') {
-            //             flag1 = 1;
-            //             break;
-            //         }
-            //         let x, y;
-            //         for (x = 0; x < 9; x++) // column check
-            //         {
-            //             if (x != u) {
-            //                 if (user[t][x] === user[t][u])
-            //                     flag1 = 1;
-            //                 break;
-            //             }
-            //         }
-            //         for (x = 0; x < 9; x++)  // row check
-            //         {
-            //             if (x != t) {
-            //                 if (user[x][u] === user[t][u])
-            //                     flag1 = 1;
-            //                 break;
-            //             }
-            //         }
-            //         for (x = 3 * Math.floor(t / 3); x < 3 * Math.floor(t / 3) + 3; i++) // box check
-            //         {
-            //             for (y = 3 * Math.floor(u / 3); y < 3 * Math.floor(u / 3) + 3; y++) {
-            //                 if (x != t && y != u) {
-            //                     if (user[x][y] === user[t][u]) {
-            //                         flag1 = 1;
-            //                         break;
-            //                     }
-            //                 }
-            //             }
-            //             if (flag1==1)
-            //                 break;
-
-            //         }
-
-
-            //         if (flag1 == 1)
-            //             break;
-
-            //     }
-            //     if (flag1 == 1)
-            //         break;
-            // }
-            console.log(flag1);
-            //above check function is used;
-
-            if (flag1 == 0) {
-                document.getElementById("stats1").innerHTML = "Victory";
-                document.getElementById("stats2").innerHTML = "Congratulations you are promoted to next level";
-                document.getElementById("stats3").innerHTML = "Next Level";
-                document.getElementById("stats4").innerHTML = "Retry";
-
-
-            }
-            else {
-                document.getElementById("stats1").innerHTML = "You Lost";
-                document.getElementById("stats2").innerHTML = "Take a breath and start again";
-                document.getElementById("stats3").innerHTML = "previous level";
-                document.getElementById("stats4").innerHTML = "Retry";
-
-            }
-            OpenBootstrapPopup();
-            function OpenBootstrapPopup() {
-                $("#simpleModal").modal('show');
-            }
-
-
+            check_correctness();
             clearInterval(myinterval);
 
             /*  timer = duration; */ // uncomment this line to reset timer automatically after reaching 0
