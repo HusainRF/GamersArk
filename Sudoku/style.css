@@ -50,7 +50,7 @@ body {
 }
 
 .Sudoku-div {
-     transform: translateX(-50%);
+    transform: translateX(-50%);
     left: 50%;
     position: absolute; 
     /* border: #5F9DF7 solid 2px; */
@@ -159,17 +159,34 @@ input {
     justify-content: center;
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 400px) {
     .timer-mode-mistakes-head {
         padding: 0 2rem;
     }
+    .Sudoku-div {
+        position: sticky;
+    }
+    .navbar-brand {
+        font-family: 'Lobster', cursive;
+        font-size: 20px !important;
+    
+        letter-spacing: 2px;
+        color: white;
+    
+        text-shadow: 3px 3px 3px rgb(202, 43, 216);
+    }
+    
+    .heading-Sudoku {
+        font-family: 'Lobster', cursive;
+        font-size: 20px;
+        color: #5F9DF7;
+        text-shadow: 1px 1px 2px black, 0 0 25px rgb(202, 43, 216), 0 0 5px red;
+        /* text-shadow: 3px 3px 3px rgb(202, 43, 216); */
+    }
+
 }
 
-@media screen and (max-width: 400px) {
-    .Sudoku-div {
-        position: fixed;
-    }
-}
+
 
 /* lower-pannel css */
 .lower-pannel {
