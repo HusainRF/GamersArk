@@ -502,7 +502,7 @@ function create_table() {
 
             // This is the css part (by js)for construction of a particular cell   
             if (i % 3 == 0 && j % 3 == 0)
-                cell.setAttribute("style", "border-right:3px solid black ;border-bottom:3px solid black;");
+                cell.setAttribute("style", "border-right:3px solid black ;border-bottom:3px solid black; ");
             else if (i % 3 == 0 && j % 3 != 0)
                 cell.setAttribute("style", "border-bottom:3px solid black; border-right:3px solid #D6CDA4;");
             else if (j % 3 == 0 && i % 3 != 0)

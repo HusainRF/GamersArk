@@ -1,26 +1,25 @@
-
-body{
+body {
     width: 100%;
 }
 
 /* nav-bar */
 
-.settings{
+.settings {
     font-size: 1.5rem;
     margin-top: 10%;
 }
 
-.navbar-brand{
+.navbar-brand {
     font-family: 'Lobster', cursive;
     font-size: 25px !important;
-    
-    letter-spacing:2px;
+
+    letter-spacing: 2px;
     color: white;
-    
+
     text-shadow: 3px 3px 3px rgb(202, 43, 216);
 }
 
-.heading-Sudoku{
+.heading-Sudoku {
     font-family: 'Lobster', cursive;
     font-size: 45px;
     color: #5F9DF7;
@@ -34,58 +33,81 @@ body{
     /* border: 0.1rem solid black; */
 }
 
-.info_btn{
-   padding: 0%;
-   margin-bottom:0% ;
+.info_btn {
+    padding: 0%;
+    margin-bottom: 0%;
 }
-.navbar-div-par{
+
+.navbar-div-par {
     /* border: black solid 2px; */
     /* background-color: #5F9DF7; */
+    border-radius: 13px 13px 13px 13px;
+    -moz-border-radius: 13px 13px 13px 13px;
+    -webkit-border-radius: 13px 13px 13px 13px;
+    -webkit-box-shadow: -2px 11px 17px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -2px 11px 17px -8px rgba(0, 0, 0, 0.75);
+    box-shadow: -2px 11px 17px -8px rgba(0, 0, 0, 0.75);
 }
 
-.Sudoku-div{
-    transform: translateX(-50%);
+.Sudoku-div {
+     transform: translateX(-50%);
     left: 50%;
-    position: absolute;
-  /* border: #5F9DF7 solid 2px; */
- 
+    position: absolute; 
+    /* border: #5F9DF7 solid 2px; */
+    /* float: center; */
 }
 
 
 /* table */
 
-.mid-div-matrix{
-  width: 100%;
+.mid-div-matrix {
+    width: 100%;
 }
 
-.matrix{
+.matrix {
     /* don't  removed */
-    display: flex ;
+    display: flex;
     justify-content: center;
     background-color: white;
+    border-radius: 13px 13px 13px 13px;
+    /* -webkit-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.62);
+    -mo-webkit-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
+    -moz-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
+    box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44); */
 }
 
 /* table */
- table{
+table {
     margin: 4rem;
-    border: 3px solid black; 
+    border: 3px solid black;
+    -webkit-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.62);
+    -mo-webkit-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
+    -moz-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
+    box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
+    /* border-radius: 10px; */
 }
 
-td{
+td {
     width: 2rem;
     height: 2rem;
     font-size: 20px;
+    background-color: #EEEEEE;
+    /* border-radius: 10px; */
+    
+    -webkit-box-shadow: inset 2px 1px 30px -74px rgba(0, 0, 0, 0.48);
+    -moz-box-shadow: inset 2px 1px 30px -74px rgba(0, 0, 0, 0.48);
+    box-shadow: inset 2px 1px 30px -74px rgba(0, 0, 0, 0.48);
 }
 
-.fxd{  
+.fxd {
     margin: 0;
     padding: 0;
     /* width: 35px; */
     font-weight: 650;
-    border-width:3px ;
+    border-width: 3px;
 }
 
-input{
+input {
     width: 2rem;
     height: 2rem;
     border: 0px;
@@ -97,15 +119,16 @@ input{
     margin: 0px;
 
 }
-#kr{
+
+#kr {
     background-color: yellowgreen;
 }
 
 /* table ends here */
 
 
-.info{
-    
+.info {
+
     /* don't  removed */
     margin-top: 0.5rem;
     float: left;
@@ -113,7 +136,7 @@ input{
 }
 
 
-.play-btn{
+.play-btn {
     /* don't  removed */
     float: center;
 }
@@ -122,28 +145,41 @@ input{
 
 /* row -> timer , mode , mistakes */
 
-.timer-mode-mistakes-head{
+.timer-mode-mistakes-head {
     /* border: solid 2px black; */
     display: flex;
-    padding: 0 4rem ;
-    margin-top: 0.5rem;
-    justify-content: space-between ;
+    padding: 0 4rem;
+    margin: 1rem;
+    justify-content: space-between;
 }
 
-.row_t_m_m{
+.row_t_m_m {
     /* border: solid 2px red; */
     display: flex;
-    justify-content: center;  
+    justify-content: center;
 }
 
 @media screen and (max-width: 360px) {
- .timer-mode-mistakes-head{
-    padding: 0 2rem ;
- }        
+    .timer-mode-mistakes-head {
+        padding: 0 2rem;
+    }
 }
 
 @media screen and (max-width: 400px) {
-    .Sudoku-div{
+    .Sudoku-div {
         position: fixed;
-    }     
+    }
+}
+
+/* lower-pannel css */
+.lower-pannel {
+    margin-top: 1rem;
+}
+
+/* footer design */
+
+.footer-div{
+    -webkit-box-shadow: 1px 4px 30px 19px rgba(0,0,0,0.14);
+    -moz-box-shadow: 1px 4px 30px 19px rgba(0,0,0,0.14);
+    box-shadow: 1px 4px 30px 19px rgba(0,0,0,0.14);
 }
