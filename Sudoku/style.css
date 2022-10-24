@@ -16,14 +16,15 @@ body {
     letter-spacing: 2px;
     color: white;
 
-    text-shadow: 3px 3px 3px rgb(202, 43, 216);
+    text-shadow: 3px 3px 3px #B2B2B2;
 }
 
 .heading-Sudoku {
     font-family: 'Lobster', cursive;
     font-size: 45px;
     color: #5F9DF7;
-    text-shadow: 1px 1px 2px black, 0 0 25px rgb(202, 43, 216), 0 0 5px red;
+    font-weight: 900;
+    text-shadow: 1px 1px 2px white, 0 0 25px white , 0 0 5px #010000;
     /* text-shadow: 3px 3px 3px rgb(202, 43, 216); */
 }
 
@@ -93,10 +94,6 @@ td {
     font-size: 20px;
     background-color: #EEEEEE;
     /* border-radius: 10px; */
-    
-    -webkit-box-shadow: inset 2px 1px 30px -74px rgba(0, 0, 0, 0.48);
-    -moz-box-shadow: inset 2px 1px 30px -74px rgba(0, 0, 0, 0.48);
-    box-shadow: inset 2px 1px 30px -74px rgba(0, 0, 0, 0.48);
 }
 
 .fxd {
