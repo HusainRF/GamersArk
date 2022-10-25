@@ -528,11 +528,11 @@ function create_table() {
 
 function check(matrix_to_check, row, col, keypress) {
     for (i = 0; i < 9; i++) {
-        if (matrix_to_check[i][col] === keypress)
+        if (matrix_to_check[i][col] == keypress)
             return 0;
-        if (matrix_to_check[row][i] === keypress)
+        if (matrix_to_check[row][i] == keypress)
             return 0;
-        if (matrix_to_check[(3 * (Math.floor(row / 3))) + Math.floor(i / 3)][3 * (Math.floor(col / 3)) + i % 3] === keypress)
+        if (matrix_to_check[(3 * (Math.floor(row / 3))) + Math.floor(i / 3)][3 * (Math.floor(col / 3)) + i % 3] == keypress)
             return 0;
     }
     return 1;
@@ -568,20 +568,21 @@ function myKeyPress(e, id) {
 
     // alert(num_pressed + "  " + id);
 
-    if (((e.keyCode) > 48 && (e.keyCode) <= 57) || ((e.keyCode) > 96 && (e.keyCode) <= 105) || e.keyCode == 8) {
-
-
-        let num_pressed;// To get the actual no. which pressed either from numbers or from numpad
-
-        if ((e.keyCode) > 96 && (e.keyCode) <= 105)
-            num_pressed = e.keyCode - 96;// when a number from numpad is pressed
-
-        if ((e.keyCode) > 48 && (e.keyCode) <= 57)
-            num_pressed = e.keyCode - 48; // when a number from numbers/upper row is pressed
+    // if (((e.keyCode) > 48 && (e.keyCode) <= 57) || ((e.keyCode) > 96 && (e.keyCode) <= 105) || e.keyCode == 8) {
+        if( (e >='1' && e <= '9') ||'Delete' || 'Backspace' ){
 
 
 
-        if (e.keyCode == 8) // keyCode of backspace
+       
+        // if ((e.keyCode) > 96 && (e.keyCode) <= 105)
+        //     num_pressed = e.keyCode - 96;// when a number from numpad is pressed
+
+        // if ((e.keyCode) > 48 && (e.keyCode) <= 57)
+        //     num_pressed = e.keyCode - 48; // when a number from numbers/upper row is pressed
+
+
+
+        if (e.key == 'Backspace') // keyCode of backspace
         {
             if(check_right_input[id[0] - '1'][id[1] - '1'] === 1) // right input removed
               count_tot_input++;
@@ -597,6 +598,9 @@ function myKeyPress(e, id) {
             alert("\nFirst click the start button to record your moves.... \n\nplease undo all your recent action!!!")
         }
         else if (user[id[0] - '1'][id[1] - '1'] === '*'  ) {
+            console.log(e);
+            let num_pressed = e.key ;// To get the actual no. which pressed either from numbers or from numpad
+
             let rw_data = id[0] - '1';
             let cl_data = id[1] - '1';
 
