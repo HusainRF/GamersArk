@@ -366,12 +366,12 @@ function easy1() {
 
 }
 function medium1() {
-    level = 1;
     duration = 1080; // duration are in seconds.
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
     // chnge_mode=level
-     
-    confirm_box();
+        confirm_box();
+
+    level = 1;
     document.getElementById("medium_to_display").innerHTML = "Mode : Medium" ;
     // document.getElementById("mode").innerHTML="Medium";
     // document.getElementById("alloted").innerHTML="18 min";
@@ -391,7 +391,7 @@ function hard1(event) {
 //              <!---------------------------Confirmation box----------------------------------/>
 function confirm_box() {
     var txt;
-    if (confirm("Do you wish to change a level?")) {
+    if (confirm("Do you wish to change a level? \n \nThe entire game will be reset by this. ")) {
       
         find_input_box(cnt_display);
         matrix_initialization();
@@ -570,18 +570,7 @@ function myKeyPress(e, id) {
 
     // if (((e.keyCode) > 48 && (e.keyCode) <= 57) || ((e.keyCode) > 96 && (e.keyCode) <= 105) || e.keyCode == 8) {
         if( (e >='1' && e <= '9') ||'Delete' || 'Backspace' ){
-
-
-
        
-        // if ((e.keyCode) > 96 && (e.keyCode) <= 105)
-        //     num_pressed = e.keyCode - 96;// when a number from numpad is pressed
-
-        // if ((e.keyCode) > 48 && (e.keyCode) <= 57)
-        //     num_pressed = e.keyCode - 48; // when a number from numbers/upper row is pressed
-
-
-
         if (e.key == 'Backspace') // keyCode of backspace
         {
             if(check_right_input[id[0] - '1'][id[1] - '1'] === 1) // right input removed
