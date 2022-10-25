@@ -68,20 +68,28 @@ body {
 .matrix {
     /* don't  removed */
     display: flex;
+    border-radius:15px;
     justify-content: center;
     background-color: white;
+
     border-radius: 13px 13px 13px 13px;
+    -webkit-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.62);
+    -mo-webkit-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
+    -moz-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
+    box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
 }
 
 /* table */
 table {
     margin: 4rem;
     border: 3px solid black;
+    /* border-radius: 10px; */
+    
+    border-radius: 13px 13px 13px 13px;
     -webkit-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.62);
     -mo-webkit-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
     -moz-box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
     box-shadow: 2px 1px 30px 5px rgba(0, 0, 0, 0.44);
-    /* border-radius: 10px; */
 }
 
 td {
