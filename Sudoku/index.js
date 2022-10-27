@@ -593,7 +593,10 @@ function myKeyPress(e, id) {
             let rw_data = id[0] - '1';
             let cl_data = id[1] - '1';
 
-            let ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
+            // let ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
+             let ok = 0 ;
+             if( trail[id[0] - '1'][id[1] - '1'] == num_pressed)
+             ok = 1;
             user[id[0] - '1'][id[1] - '1'] = num_pressed;
             pop_counter++;
 
