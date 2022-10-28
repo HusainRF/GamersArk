@@ -550,25 +550,7 @@ let user_mistake_counter = 0;
 
 // Recording which no. is entered in which cell of matrix 
 function myKeyPress(e, id) {
-    // var keynum;
 
-
-    // if (window.event) {
-    //     keynum = e.keyCode;
-    // } else if (e.which) {
-    //     keynum = e.which;
-    // }
-
-    // let num_pressed = String.fromCharCode(keynum);
-
-    // console.log(num_pressed);
-    // id  => id of input cell where user enters new value
-    // num_pressed  => tell's what number was press
-
-
-    // alert(num_pressed + "  " + id);
-
-    // if (((e.keyCode) > 48 && (e.keyCode) <= 57) || ((e.keyCode) > 96 && (e.keyCode) <= 105) || e.keyCode == 8) {
         if( (e >='1' && e <= '9') ||'Delete' || 'Backspace' ){
        
         if (e.key == 'Backspace') // keyCode of backspace
@@ -593,10 +575,11 @@ function myKeyPress(e, id) {
             let rw_data = id[0] - '1';
             let cl_data = id[1] - '1';
 
-            // let ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
-             let ok = 0 ;
-             if( trail[id[0] - '1'][id[1] - '1'] == num_pressed)
-             ok = 1;
+            let ok = 0 ;
+            ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
+            
+            //  if( trail[id[0] - '1'][id[1] - '1'] == num_pressed)
+            //  ok = 1;
             user[id[0] - '1'][id[1] - '1'] = num_pressed;
             pop_counter++;
 
