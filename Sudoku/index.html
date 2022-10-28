@@ -20,7 +20,7 @@
     <nav class="navbar navbar-expand-lg navbar-light  navbar-div-par " style="background-color: #EEEEEE;">
         <div class="container-fluid ">
             <a class="navbar-brand nav-GamersArk" href="#">GamersArk</a>
-           
+
             <div class="mx-auto text-center  Sudoku-div ">
                 <a class="navbar-brand heading-Sudoku" href="#">Suduko</a>
             </div>
@@ -57,11 +57,10 @@
                                 colors="primary:#121331" state="hover-2" style="width:32px;height:32px">
                             </lord-icon>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                             <li><button id="easy" class="dropdown-item">Easy</button></li>
                             <li><button id="medium" class="dropdown-item">Medium</button></li>
                             <li><button id="hard" class="dropdown-item">Hard</button></li>
-                            <li><button id="custom" class="dropdown-item">custom</button></li>
                         </ul>
                     </li>
 
@@ -70,6 +69,7 @@
             </div>
         </div>
     </nav>
+
 
 
 
@@ -107,7 +107,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="hintbtn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable">
             <div class="modal-content">
@@ -136,39 +135,23 @@
 
 
 
-   
-
-    <!-- <div class="container-fluid row align-item-center"> -->
-        
-        <!-- timer col -->
-        <!-- <div class="col-lg-4 col-sm-4 ">
-            <h1 id="timer2" class = "row_t_m_m"  style="padding-left: 2rem;"> 00:00 </h1>
-        </div>
-        <div class="col-lg-4 col-sm-4 text-center ">
-            <h1 id="medium_to_display" class = "row_t_m_m">Mode : easy </h1>
-        </div>
-        <div class="col-lg-4 col-sm-4 text-end ">
-            <h1 id="mistakes_to_display" class = "row_t_m_m" style="padding-right: 2rem;"> 00:00 </h1>
-        </div> -->
-        <!-- timer col -->
 
 
-        <!-- Timer row -->
-    <!-- </div> -->
-    
+
+
     <div class="timer-mode-mistakes-head">
-        
+
         <!-- timer col -->
         <div class="timer-div row_t_m_m ">
-            <h6 id="timer2" class = ""  > 00:00 </h6>
+            <h6 id="timer2" class=""> 00:00 </h6>
         </div>
 
         <div class=" mode-div row_t_m_m">
-            <h6 id="medium_to_display" class = "">Mode : easy </h6>
+            <h6 id="medium_to_display" class="">Mode : easy </h6>
         </div>
-        
+
         <div class=" mistakes-div row_t_m_m">
-            <h6 id="mistakes_to_display" class = " " > 00:00 </h6>
+            <h6 id="mistakes_to_display" class=" "> 00:00 </h6>
         </div>
         <!-- timer col -->
 
@@ -177,20 +160,63 @@
     </div>
 
     <!-- temp -->
- 
- 
- 
+
+
+
     <!-- grid row -->
     <div class="row align-item-center mid-div-matrix">
 
-        <div class="col-lg-2 col-sm-12 grid">
-            <!-- timer row -->
-            <div class="container d-flex m-2 justify-content-left ">
-                <!-- <button type="button" class="btn btn-primary ">countdown</button> -->
-                <h1></h1>
+
+        <div class=" col-lg-2 col-sm-12 grid ms-1">
+            <!-- // This column contains the customization  button -->
+            <h5 class="text-center"> Customize your timer </h5>
+            <div class="d-flex justify-content-center play-btn ">
+                <button type="button" class="btn btn-sm m-2 btn-secondary" data-bs-toggle="modal"
+                    data-bs-target="#knowmore">Know more</button>
+
+                <button type="button" class="btn btn-sm m-2 btn-secondary " onclick=f6()>Customize</button>
+            </div>
+            <div>
+                <div class="input-group text-center">
+                    <input type="text" class="form-control m-1 w-25" id="custm_min">
+                    <span class="m-1">min</span>
+                    <input type="text" class="form-control m-1 w-25" id="custm_sec">
+                    <span class="m-1">sec</span>
+
+                </div>
             </div>
 
-            <!-- timer row -->
+            <div class="modal fade" id="knowmore" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h5 class="modal-title" id="exampleModalLabel"> Customizaton </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>This is a unique Feature offered by GamersArk .By modifying the Timer according to your preferences, you can also enhance your Speed and
+                                Accuracy </p>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>Step 1: Set the difficulty level</li>
+                                <li>Step 2: Write the required time in minutes and seconds </li>
+                                <li>Step 3: click on Customize button </li>
+                                <li>Step 4: click the start button </li>
+                                <li>Step 5: Follow the above steps sequentially</li>
+                                <br>
+                                <br>
+                                <li>Note : Timer cannot be altered once the start button has been pressed. To do this,
+                                    simply reload the game or click the "Submit" button.</li>
+
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-lg-8 col-sm-12 grid">
             <h1 class="text-center">
@@ -207,8 +233,8 @@
                     </div>
 
                     <div class="d-flex justify-content-center play-btn ">
-                        <button type="button" class="btn m-2 btn-secondary " id="strt" onclick=f1()>start</button>
-                        <button type="button" class="btn m-2 btn-secondary " id="strt" onclick=f5()>submit</button>
+                        <button type="button" class="btn m-2 btn-secondary " onclick=f1()>start</button>
+                        <button type="button" class="btn m-2 btn-secondary " onclick=f5()>submit</button>
 
                     </div>
                 </div>
@@ -242,145 +268,112 @@
                     <button id="stats3" type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         onclick=f2()>Next level</button>
                     <button id="stats4" type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick=f3()>Go to
-                       retry </button>
+                        retry </button>
                 </div>
             </div>
         </div>
     </div>
 
-<!-- Remove the container if you want to extend the Footer to full width. -->
-<div class=" my-5 footer-div">
-    <!-- Footer -->
-    <footer
-            class="text-center text-lg-start "
-            style="background-color: gray"
-            >
-      <!-- Grid container -->
-      <div class="container p-4 pb-0 ">
-        <!-- Section: Links -->
-        <section class="">
-          <!--Grid row-->
-            <div class="row"  style="background-color: gray;">
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 " >
-              <h6 class="text-uppercase mb-4 font-weight-bold">
-                GamersArk
-              </h6>
-              <p>
-                This is a wonderful gaming website. It consists of various category of games which can sharpen your mind.
-              </p>
+    <!-- Remove the container if you want to extend the Footer to full width. -->
+    <div class=" my-5 footer-div">
+        <!-- Footer -->
+        <footer class="text-center text-lg-start " style="background-color: gray">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0 ">
+                <!-- Section: Links -->
+                <section class="">
+                    <!--Grid row-->
+                    <div class="row" style="background-color: gray;">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 ">
+                            <h6 class="text-uppercase mb-4 font-weight-bold">
+                                GamersArk
+                            </h6>
+                            <p>
+                                This is a wonderful gaming website. It consists of various category of games which can
+                                sharpen your mind.
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <hr class="w-100 clearfix d-md-none" />
+
+                        <!-- Grid column -->
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h6 class="text-uppercase mb-4 font-weight-bold">Developers</h6>
+                            <p>
+                                <a class="text-white" href="https://www.linkedin.com/in/chirag-jain-14a079202"
+                                    target="_blank">Chirag J.</a>
+                            </p>
+                            <p>
+                                <a class="text-white" href="https://www.linkedin.com/in/husain-rampura-85a494216/"
+                                    target="_blank">Husain R.</a>
+                            </p>
+                            <p>
+                                <a class="text-white" href="https://www.linkedin.com/in/kalash-jain-b50027203"
+                                    target="_blank">Kalash J.</a>
+                            </p>
+
+                        </div>
+                        <!-- Grid column -->
+
+                        <hr class="w-100 clearfix d-md-none" />
+
+                        <!-- Grid column -->
+                        <hr class="w-100 clearfix d-md-none" />
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                            <p><i class="fas fa-envelope mr-3"></i> GamersArk17@gmail.com </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
+
+                            <!-- Facebook -->
+                            <a class="btn btn-secondary btn-floating m-1" style="background-color: black" href="#!"
+                                role="button"><i class="fab fa-facebook-f"></i></a>
+
+                            <!-- Twitter -->
+                            <a class="btn btn-secondary btn-floating m-1" style="background-color: black" href="#!"
+                                role="button"><i class="fab fa-twitter"></i></a>
+
+                            <!-- Google -->
+                            <a class="btn btn-secondary btn-floating m-1" style="background-color: black" href="#!"
+                                role="button"><i class="fab fa-google"></i></a>
+
+                            <!-- Instagram -->
+                            <a class="btn btn-secondary btn-floating m-1" style="background-color: black" href="#!"
+                                role="button"><i class="fab fa-instagram"></i></a>
+
+                            <!-- Linkedin -->
+                            <a class="btn btn-secondary btn-floating m-1" style="background-color: black" href="#!"
+                                role="button"><i class="fab fa-linkedin-in"></i></a>
+                            <!-- Github -->
+                            <a class="btn btn-secondary btn-floating m-1" style="background-color: black"
+                                href="https://github.com/HusainRF/GamersArk" role="button" target="_blank"><i
+                                    class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <!--Grid row-->
+                </section>
+                <!-- Section: Links -->
             </div>
-            <!-- Grid column -->
-  
-            <hr class="w-100 clearfix d-md-none" />
-  
-            <!-- Grid column -->
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-              <h6 class="text-uppercase mb-4 font-weight-bold">Developers</h6>
-              <p>
-                <a class="text-white" href="https://www.linkedin.com/in/chirag-jain-14a079202" target="_blank">Chirag J.</a>
-              </p>
-              <p>
-                <a class="text-white" href="https://www.linkedin.com/in/husain-rampura-85a494216/" target="_blank">Husain R.</a>
-              </p>
-              <p>
-                <a class="text-white" href="https://www.linkedin.com/in/kalash-jain-b50027203" target="_blank">Kalash J.</a>
-              </p>
-             
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                © 2022 Copyright:
+                <a class="text-white" href="#x">GamersArk.com</a>
             </div>
-            <!-- Grid column -->
-  
-            <hr class="w-100 clearfix d-md-none" />
-  
-            <!-- Grid column -->
-            <hr class="w-100 clearfix d-md-none" />
-  
-            <!-- Grid column -->
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-              <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-              <p><i class="fas fa-envelope mr-3"></i> GamersArk17@gmail.com </p>
-            </div>
-            <!-- Grid column -->
-  
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-              <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
-  
-              <!-- Facebook -->
-              <a
-                 class="btn btn-secondary btn-floating m-1"
-                 style="background-color: black"
-                 href="#!"
-                 role="button"
-                 ><i class="fab fa-facebook-f"></i
-                ></a>
-  
-              <!-- Twitter -->
-              <a
-                 class="btn btn-secondary btn-floating m-1"
-                 style="background-color: black"
-                 href="#!"
-                 role="button"
-                 ><i class="fab fa-twitter"></i
-                ></a>
-  
-              <!-- Google -->
-              <a
-                 class="btn btn-secondary btn-floating m-1"
-                 style="background-color: black"
-                 href="#!"
-                 role="button"
-                 ><i class="fab fa-google"></i
-                ></a>
-  
-              <!-- Instagram -->
-              <a
-                 class="btn btn-secondary btn-floating m-1"
-                 style="background-color: black"
-                 href="#!"
-                 role="button"
-                 ><i class="fab fa-instagram"></i
-                ></a>
-  
-              <!-- Linkedin -->
-              <a
-                 class="btn btn-secondary btn-floating m-1"
-                 style="background-color: black"
-                 href="#!"
-                 role="button"
-                 ><i class="fab fa-linkedin-in"></i
-                ></a>
-              <!-- Github -->
-              <a
-                 class="btn btn-secondary btn-floating m-1"
-                 style="background-color: black"
-                 href="https://github.com/HusainRF/GamersArk"
-                 role="button"
-                 target="_blank"
-                 ><i class="fab fa-github"></i
-                ></a>
-            </div>
-          </div>
-          <!--Grid row-->
-        </section>
-        <!-- Section: Links -->
-      </div>
-      <!-- Grid container -->
-  
-      <!-- Copyright -->
-      <div
-           class="text-center p-3"
-           style="background-color: rgba(0, 0, 0, 0.2)"
-           >
-        © 2022 Copyright:
-        <a class="text-white" href="#x">GamersArk.com</a
-          >
-      </div>
-      <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
-  </div>
-  <!-- End of .container -->
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+    </div>
+    <!-- End of .container -->
 
 
     <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
