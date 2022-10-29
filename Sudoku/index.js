@@ -117,7 +117,7 @@ function find_input_box(cnt_display) {
     count_tot_input = input_cnt;
 
     correct = 0;
-    
+
     let z = 0;
     let all_indeces = new Array(81);
 
@@ -179,11 +179,11 @@ function find_input_box(cnt_display) {
 // pop-up call here
 
 let pop_counter, correct;
-function check_correctness()   // this function is used to check the correctness of the user input when the timer  over or submit button is clicked
+function check_correctness()   // this function is used to check the correctness of the user input when the timer over or submit button is clicked
 {
-    let flag1=0;
-    if(count_tot_input!=0 || timer == 0)
-    flag1 = 1;
+    let flag1 = 0;
+    if (count_tot_input != 0 || timer == 0)
+        flag1 = 1;
 
     if (flag1 == 0) {
         document.getElementById("stats1").innerHTML = "Victory";
@@ -206,7 +206,7 @@ function check_correctness()   // this function is used to check the correctness
     }
 
 }
-function f2() {   // this is used to  change level
+function f2() {   // this is used to change level
     if (count_tot_input == 0) {             // if everything is right then promote to new level 
         if (level == 0) {
             medium1();
@@ -215,7 +215,7 @@ function f2() {   // this is used to  change level
             hard1();
 
     }
-    else {                          // else take the user to prev level
+    else {                          // else take the user to previous level
         if (level == 2) {
             medium1();
         }
@@ -313,7 +313,7 @@ function matrix_initialization() {
 
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-                check_right_input[i][j] = 0;
+            check_right_input[i][j] = 0;
         }
         // console.log(user[i]);
     }
@@ -343,24 +343,25 @@ let level = 0;
 // when level = 2 difficulty level => Hard
 let duration;
 let cnt_display = 30;
-chnge_mode=0;
-let first_time_easy_check=0;
+chnge_mode = 0;
+let first_time_easy_check = 0;
 function easy1() {
 
     level = 0;
     duration = 300; // duration are in seconds.
     cnt_display = 50 + Math.floor((Math.random() * 10)); // generate random value 50-60
-   
+
 
     // chnge_mode=level
-    if(first_time_easy_check==0){
-    find_input_box(cnt_display);
-    matrix_initialization();
-    first_time_easy_check=1;}
+    if (first_time_easy_check == 0) {
+        find_input_box(cnt_display);
+        matrix_initialization();
+        first_time_easy_check = 1;
+    }
     else
-    confirm_box();
-    document.getElementById("medium_to_display").innerHTML = "Mode : easy" ;
-    
+        confirm_box();
+    document.getElementById("medium_to_display").innerHTML = "Mode : easy";
+
     // document.getElementById("mode").innerHTML="Easy";
     // document.getElementById("alloted").innerHTML="10 min";
 
@@ -369,10 +370,10 @@ function medium1() {
     duration = 1080; // duration are in seconds.
     cnt_display = 40 + Math.floor((Math.random() * 10)); // generate random value 40-50
     // chnge_mode=level
-        confirm_box();
+    confirm_box();
 
     level = 1;
-    document.getElementById("medium_to_display").innerHTML = "Mode : Medium" ;
+    document.getElementById("medium_to_display").innerHTML = "Mode : Medium";
     // document.getElementById("mode").innerHTML="Medium";
     // document.getElementById("alloted").innerHTML="18 min";
 }
@@ -383,8 +384,8 @@ function hard1(event) {
     // chnge_mode=level
 
     confirm_box();
-   
-    document.getElementById("medium_to_display").innerHTML = "Mode : Hard" ;
+
+    document.getElementById("medium_to_display").innerHTML = "Mode : Hard";
     // document.getElementById("mode").innerHTML="Hard";
     // document.getElementById("alloted").innerHTML="25 min";
 }
@@ -392,13 +393,13 @@ function hard1(event) {
 function confirm_box() {
     var txt;
     if (confirm("Do you wish to change a level? \n \nThe entire game will be reset by this. ")) {
-      
+
         find_input_box(cnt_display);
         matrix_initialization();
         // console.log(cnt_display);
 
     }
-   
+
 }
 
 
@@ -434,7 +435,7 @@ function checkInput(ob) {
         ob.value = ob.value.replace(invalidChars, "");
         return false;
     }
-    
+
     return true;
 }
 
@@ -551,33 +552,33 @@ let user_mistake_counter = 0;
 // Recording which no. is entered in which cell of matrix 
 function myKeyPress(e, id) {
 
-        if( (e >='1' && e <= '9') ||'Delete' || 'Backspace' ){
-       
+    if ((e >= '1' && e <= '9') || 'Delete' || 'Backspace') {
+
         if (e.key == 'Backspace') // keyCode of backspace
         {
-            if(check_right_input[id[0] - '1'][id[1] - '1'] === 1) // right input removed
-              count_tot_input++;
+            if (check_right_input[id[0] - '1'][id[1] - '1'] === 1) // right input removed
+                count_tot_input++;
 
             check_right_input[id[0] - '1'][id[1] - '1'] = 0;
-            
+
             user[id[0] - '1'][id[1] - '1'] = '*';
             document.getElementById(id).style.backgroundColor = "white";
 
 
         }
-        else if(timer == 0){
+        else if (timer == 0) {
             alert("\nFirst click the start button to record your moves.... \n\nplease undo all your recent action!!!")
         }
-        else if (user[id[0] - '1'][id[1] - '1'] === '*'  ) {
+        else if (user[id[0] - '1'][id[1] - '1'] === '*') {
             console.log(e);
-            let num_pressed = e.key ;// To get the actual no. which pressed either from numbers or from numpad
+            let num_pressed = e.key;// To get the actual no. which pressed either from numbers or from numpad
 
             let rw_data = id[0] - '1';
             let cl_data = id[1] - '1';
 
-            let ok = 0 ;
+            let ok = 0;
             ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
-            
+
             //  if( trail[id[0] - '1'][id[1] - '1'] == num_pressed)
             //  ok = 1;
             user[id[0] - '1'][id[1] - '1'] = num_pressed;
@@ -587,12 +588,12 @@ function myKeyPress(e, id) {
             {
                 document.getElementById(id).style.backgroundColor = "#FF5D5D";
                 user_mistake_counter++;
-                document.getElementById("mistakes_to_display").innerHTML ="Mistakes : " + user_mistake_counter;
+                document.getElementById("mistakes_to_display").innerHTML = "Mistakes : " + user_mistake_counter;
             }
             else // if it is correct  ,no change.
             {
                 check_right_input[id[0] - '1'][id[1] - '1'] = 1;
-                count_tot_input -- ; // decrease cnt by 1 because right input inserted
+                count_tot_input--; // decrease cnt by 1 because right input inserted
                 document.getElementById(id).style.backgroundColor = "white";
             }
         }
@@ -608,10 +609,10 @@ function myKeyPress(e, id) {
 
 
 // Submit button function
-let submit_btn_clicked=0; // it is flag variable used to bring up the pop up template
+let submit_btn_clicked = 0; // it is flag variable used to bring up the pop up template
 function f5()   // This function is invoked when the user tries to submit the response before timer ==0;
 {
-    submit_btn_clicked=1;  // when user click the submit button  , the timer stops
+    submit_btn_clicked = 1;  // when user click the submit button  , the timer stops
     check_correctness();    // to check the correct ness of the user input 
 }
 
@@ -624,30 +625,30 @@ function f5()   // This function is invoked when the user tries to submit the re
 
 var timer = 0;
 function f1() {
-    if(timer <= 0)
-    startTimer(duration, timer2);
+    if (timer <= 0)
+        startTimer(duration, timer2);
 }
 
 // var pause = true;
 chnge_mode = 0;
 function startTimer(duration, display) {
-     timer = duration;
-    var  minutes, seconds;
-   
+    timer = duration;
+    var minutes, seconds;
+
     let myinterval = setInterval(myTimer, 1000);
     display.style.backgroundColor = "white";
-//   console.log(timer);
+    //   console.log(timer);
 
     function myTimer() {
         // console.log(chnge_mode);
-        if (chnge_mode != level || submit_btn_clicked==1) {
+        if (chnge_mode != level || submit_btn_clicked == 1) {
             chnge_mode = level;
-            submit_btn_clicked=0;
+            submit_btn_clicked = 0;
             timer = 0;
             // display.innerHTML = "00 " +":" +" 00";
             clearInterval(myinterval);
             // console.log("reached ");
-            
+
         }
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
@@ -706,6 +707,39 @@ function startTimer(duration, display) {
 
 //     document.getElementById("countTimers").innerHTML = timersCount;
 // }
+
+
+
+
+
+
+// Customization of timer
+
+
+let custom_min=0        // to get the value entered by the user in min
+let custom_sec=0;      // to get the value entered by the user in seconds
+function f6()  // when customize button is clicked 
+{
+
+    // .value in input returns a string .To convert it into number we use Number method
+    custom_min=Number(document.getElementById("custm_min").value); 
+    custom_sec=Number(document.getElementById("custm_sec").value);
+    // console.log(custom_min);
+    // console.log(custom_sec);
+    duration=custom_min*60+custom_sec;    // updating duration of the timer
+    
+
+}
+
+
+
+
+
+
+
+// Customization of timer
+
+
 
 
 // <!----------------------------Countdown-Timer ended------------------------------/>
