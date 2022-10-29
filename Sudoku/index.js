@@ -179,7 +179,7 @@ function find_input_box(cnt_display) {
 // pop-up call here
 
 let pop_counter, correct;
-function check_correctness()   // this function is used to check the correctness of the user input when the timer  over or submit button is clicked
+function check_correctness()   // this function is used to check the correctness of the user input when the timer over or submit button is clicked
 {
     let flag1 = 0;
     if (count_tot_input != 0 || timer == 0)
@@ -206,7 +206,7 @@ function check_correctness()   // this function is used to check the correctness
     }
 
 }
-function f2() {   // this is used to  change level
+function f2() {   // this is used to change level
     if (count_tot_input == 0) {             // if everything is right then promote to new level 
         if (level == 0) {
             medium1();
@@ -215,7 +215,7 @@ function f2() {   // this is used to  change level
             hard1();
 
     }
-    else {                          // else take the user to prev level
+    else {                          // else take the user to previous level
         if (level == 2) {
             medium1();
         }
