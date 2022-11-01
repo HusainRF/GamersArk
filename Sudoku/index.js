@@ -730,7 +730,21 @@ function f6()  // when customize button is clicked
     
 
 }
+// dark mode
+$(document).ready(function(){
+    $('#selector').change(function(){
+        $('body').toggleClass('bg-dark');
+        $('.bkbg').toggleClass('bg-dark');
+        $('nav').toggleClass('navbar-dark bg-secondary');
+        $('td').toggleClass('bg-secondary');
+        $('input').toggleClass('bg-secondary');
+        $('.custom-control-label').toggleClass('text-white');
+        $('td').toggleClass('text-white');
+        $('input').toggleClass('text-warning');
+        $('.wt').toggleClass('text-white');
 
+    });
+});
 
 
 
