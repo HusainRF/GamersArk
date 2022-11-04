@@ -224,9 +224,9 @@ function f2() {   // this is used to change level
     }
 
 }
-function f3() {              // it used as a retry button 
+function f3() {           // it used as a retry button 
     if (level == 0)
-        easy1();
+         easy1();
     else if (level == 1)
         medium1();
     else
@@ -587,12 +587,14 @@ function myKeyPress(e, id) {
             if (!ok) // if number is not correct ,we change bg color to red
             {
                 document.getElementById(id).style.backgroundColor = "#FF5D5D";
+                playSound("wrong");
                 user_mistake_counter++;
                 document.getElementById("mistakes_to_display").innerHTML = "Mistakes : " + user_mistake_counter;
             }
             else // if it is correct  ,no change.
             {
                 check_right_input[id[0] - '1'][id[1] - '1'] = 1;
+                playSound("type");
                 count_tot_input--; // decrease cnt by 1 because right input inserted
                 document.getElementById(id).style.backgroundColor = "white";
             }
@@ -602,7 +604,10 @@ function myKeyPress(e, id) {
     }
 
 }
-
+function playSound(name){
+    var audio = new Audio("sound/" + name+ ".mp3");
+    audio.play();
+}
 //    <!---------------------------function end-------------------------------------------/>
 
 
