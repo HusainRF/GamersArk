@@ -226,7 +226,7 @@ function f2() {   // this is used to change level
 }
 function f3() {           // it used as a retry button 
     if (level == 0)
-         easy1();
+        easy1();
     else if (level == 1)
         medium1();
     else
@@ -477,8 +477,8 @@ function create_table() {
             let input_id = num.toString();
 
             // here big input element is breakdown in 3-parts...
-            let inp1 = '<input id = "' + input_id;
-            let inp2 = ' "maxlength="1" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" onkeydown ="return myKeyPress(event, id)" autocomplete="off"/>'
+            let inp1 = '<input id = " ' + input_id;
+            let inp2 = ' "maxlength="1" class="inpuser" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" onkeydown ="return myKeyPress(event, id)" autocomplete="off"/>'
 
             // let inp3 = '';
             // those 3-parts are merged together for further use
@@ -517,6 +517,16 @@ function create_table() {
         tbody.append(row);
     }
 
+    if (drk_mood) {
+        
+        $('td').toggleClass('bg-secondary');
+        $('.inpuser').toggleClass('bg-secondary');
+        $('.custom-control-label').toggleClass('text-white');
+        $('td').toggleClass('text-white');
+        $('.inpuser').toggleClass('text-warning');
+        // $('.wt').toggleClass('text-white');
+    }
+
 }
 
 //              <!------------matrix design + printing + adding input cell  -  end -----------------/>
@@ -551,17 +561,19 @@ let user_mistake_counter = 0;
 
 // Recording which no. is entered in which cell of matrix 
 function myKeyPress(e, id) {
-
+    let rw_n = Math.floor(id/10)-1;
+    let cw_n = Math.floor(id%10)-1;
+  
     if ((e >= '1' && e <= '9') || 'Delete' || 'Backspace') {
 
         if (e.key == 'Backspace') // keyCode of backspace
         {
-            if (check_right_input[id[0] - '1'][id[1] - '1'] === 1) // right input removed
+            if (check_right_input[ rw_n][cw_n] === 1) // right input removed
                 count_tot_input++;
 
-            check_right_input[id[0] - '1'][id[1] - '1'] = 0;
+            check_right_input[ rw_n][cw_n] = 0;
 
-            user[id[0] - '1'][id[1] - '1'] = '*';
+            user[rw_n][cw_n] = '*';
             document.getElementById(id).style.backgroundColor = "white";
 
 
@@ -569,31 +581,39 @@ function myKeyPress(e, id) {
         else if (timer == 0) {
             alert("\nFirst click the start button to record your moves.... \n\nplease undo all your recent action!!!")
         }
-        else if (user[id[0] - '1'][id[1] - '1'] === '*') {
-            console.log(e);
+        else if (user[ rw_n][cw_n] == '*') {
             let num_pressed = e.key;// To get the actual no. which pressed either from numbers or from numpad
-
-            let rw_data = id[0] - '1';
-            let cl_data = id[1] - '1';
-
+            
+            let rw_data =  rw_n;
+            let cl_data = cw_n;
+            
             let ok = 0;
             ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
-
+            
             //  if( trail[id[0] - '1'][id[1] - '1'] == num_pressed)
             //  ok = 1;
-            user[id[0] - '1'][id[1] - '1'] = num_pressed;
+            user[ rw_n][cw_n] = num_pressed;
             pop_counter++;
-
+            
             if (!ok) // if number is not correct ,we change bg color to red
             {
-                document.getElementById(id).style.backgroundColor = "#FF5D5D";
+                // console.log(e.key);
+                console.log(e.key);
+                if(drk_mood){
+                  
+                }
+                else{
+                    var wrng_id = id.toString();
+                    document.getElementById(wrng_id).style.backgroundColor = "#FF5D5D";
+                    user_mistake_counter++;
+                    document.getElementById("mistakes_to_display").innerHTML = "Mistakes : " + user_mistake_counter;    
+                }
                 playSound("wrong");
-                user_mistake_counter++;
-                document.getElementById("mistakes_to_display").innerHTML = "Mistakes : " + user_mistake_counter;
+                    
             }
             else // if it is correct  ,no change.
             {
-                check_right_input[id[0] - '1'][id[1] - '1'] = 1;
+                check_right_input[ rw_n][cw_n] = 1;
                 playSound("type");
                 count_tot_input--; // decrease cnt by 1 because right input inserted
                 document.getElementById(id).style.backgroundColor = "white";
@@ -604,8 +624,8 @@ function myKeyPress(e, id) {
     }
 
 }
-function playSound(name){
-    var audio = new Audio("sound/" + name+ ".mp3");
+function playSound(name) {
+    var audio = new Audio("sound/" + name + ".mp3");
     audio.play();
 }
 //    <!---------------------------function end-------------------------------------------/>
@@ -721,23 +741,32 @@ function startTimer(duration, display) {
 // Customization of timer
 
 
-let custom_min=0        // to get the value entered by the user in min
-let custom_sec=0;      // to get the value entered by the user in seconds
+let custom_min = 0        // to get the value entered by the user in min
+let custom_sec = 0;      // to get the value entered by the user in seconds
 function f6()  // when customize button is clicked 
 {
 
     // .value in input returns a string .To convert it into number we use Number method
-    custom_min=Number(document.getElementById("custm_min").value); 
-    custom_sec=Number(document.getElementById("custm_sec").value);
+    custom_min = Number(document.getElementById("custm_min").value);
+    custom_sec = Number(document.getElementById("custm_sec").value);
     // console.log(custom_min);
     // console.log(custom_sec);
-    duration=custom_min*60+custom_sec;    // updating duration of the timer
-    
+    duration = custom_min * 60 + custom_sec;    // updating duration of the timer
+
 
 }
 // dark mode
-$(document).ready(function(){
-    $('#selector').change(function(){
+var drk_mood = 0;
+$(document).ready(function () {
+    $('#selector').change(function () {
+
+        if (drk_mood == 0)
+            drk_mood = 1; // 1 : dark mood present 
+        else
+            drk_mood = 0; // 0 : dark mood absent 
+
+
+
         $('body').toggleClass('bg-dark');
         $('.bkbg').toggleClass('bg-dark');
         $('nav').toggleClass('navbar-dark bg-secondary');
