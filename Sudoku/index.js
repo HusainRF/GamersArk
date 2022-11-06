@@ -640,8 +640,45 @@ function f5()   // This function is invoked when the user tries to submit the re
 }
 
 
+// dark mode
 
-// Submit button function
+var drk_mood = 0;
+
+$(document).ready(function () {
+    $('#selector').change(function () {
+
+        if (drk_mood == 0)
+            drk_mood = 1; // 1 : dark mood present 
+        else{
+            drk_mood = 0; // 0 : dark mood absent 
+        }
+
+        for(let trav_row =0 ;trav_row < 9; trav_row++){
+            for(let trav_col = 0 ; trav_col < 9 ; trav_col++){
+               if(user[trav_row][trav_col] == '*'){
+                    let my_id =(trav_row+1)*10 + trav_col+1;
+                    if(drk_mood === 1){
+                        document.getElementById(my_id).style.backgroundColor = "#6c757d";
+                    }
+                    else 
+                        document.getElementById(my_id).style.backgroundColor = "white";
+               }
+            }
+        }
+
+        $('body').toggleClass('bg-dark');
+        $('.bkbg').toggleClass('bg-dark');
+        $('nav').toggleClass('navbar-dark bg-secondary');
+        $('td').toggleClass('bg-sec');
+        // $('input').toggleClass('bg-sec');
+        $('.custom-control-label').toggleClass('text-white');
+        $('td').toggleClass('text-white');
+        $('input').toggleClass('text-warning');
+        $('.wt').toggleClass('text-white');
+
+    });
+});
+
 
 
 //      <!---------------------------Countdown-Timer started-------------------------------/>
@@ -696,9 +733,6 @@ function startTimer(duration, display) {
 }
 
 
-
-
-
 // Customization of timer
 
 let custom_min = 0        // to get the value entered by the user in min
@@ -713,35 +747,7 @@ function f6()  // when customize button is clicked
     // console.log(custom_sec);
     duration = custom_min * 60 + custom_sec;    // updating duration of the timer
 
-
 }
-// dark mode
-var drk_mood = 0;
-
-$(document).ready(function () {
-    $('#selector').change(function () {
-
-        if (drk_mood == 0)
-            drk_mood = 1; // 1 : dark mood present 
-        else
-            drk_mood = 0; // 0 : dark mood absent 
-
-        $('body').toggleClass('bg-dark');
-        $('.bkbg').toggleClass('bg-dark');
-        $('nav').toggleClass('navbar-dark bg-secondary');
-        $('td').toggleClass('bg-sec');
-        $('input').toggleClass('bg-sec');
-        $('.custom-control-label').toggleClass('text-white');
-        $('td').toggleClass('text-white');
-        $('input').toggleClass('text-warning');
-        $('.wt').toggleClass('text-white');
-
-    });
-});
-
-
-
-
 
 
 // Customization of timer
