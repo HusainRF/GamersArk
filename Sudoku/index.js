@@ -477,8 +477,8 @@ function create_table() {
             let input_id = num.toString();
 
             // here big input element is breakdown in 3-parts...
-            let inp1 = '<input id = " ' + input_id;
-            let inp2 = ' "maxlength="1" class="inpuser" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" onkeydown ="return myKeyPress(event, id)" autocomplete="off"/>'
+            let inp1 = '<input id = "' + input_id;
+            let inp2 = '"maxlength="1" class="inpuser" onChange="checkInput(this)" onKeyup="checkInput(this)" type="text" onkeydown ="return myKeyPress(event, id)" autocomplete="off"/>'
 
             // let inp3 = '';
             // those 3-parts are merged together for further use
@@ -519,8 +519,8 @@ function create_table() {
 
     if (drk_mood) {
         
-        $('td').toggleClass('bg-secondary');
-        $('.inpuser').toggleClass('bg-secondary');
+        $('td').toggleClass('bg-sec');
+        $('.inpuser').toggleClass('bg-sec');
         $('.custom-control-label').toggleClass('text-white');
         $('td').toggleClass('text-white');
         $('.inpuser').toggleClass('text-warning');
@@ -563,7 +563,6 @@ let user_mistake_counter = 0;
 function myKeyPress(e, id) {
     let rw_n = Math.floor(id/10)-1;
     let cw_n = Math.floor(id%10)-1;
-  
     if ((e >= '1' && e <= '9') || 'Delete' || 'Backspace') {
 
         if (e.key == 'Backspace') // keyCode of backspace
@@ -574,8 +573,12 @@ function myKeyPress(e, id) {
             check_right_input[ rw_n][cw_n] = 0;
 
             user[rw_n][cw_n] = '*';
-            document.getElementById(id).style.backgroundColor = "white";
 
+            if(drk_mood === 1){
+                document.getElementById(id).style.backgroundColor = "#6c757d";
+            }
+            else 
+                document.getElementById(id).style.backgroundColor = "white";
 
         }
         else if (timer == 0) {
@@ -598,16 +601,11 @@ function myKeyPress(e, id) {
             if (!ok) // if number is not correct ,we change bg color to red
             {
                 // console.log(e.key);
-                console.log(e.key);
-                if(drk_mood){
-                  
-                }
-                else{
                     var wrng_id = id.toString();
                     document.getElementById(wrng_id).style.backgroundColor = "#FF5D5D";
                     user_mistake_counter++;
                     document.getElementById("mistakes_to_display").innerHTML = "Mistakes : " + user_mistake_counter;    
-                }
+                
                 playSound("wrong");
                     
             }
@@ -697,49 +695,11 @@ function startTimer(duration, display) {
     }
 }
 
-// document.getElementById('pause').addEventListener('click', function () {
-//     pause = false;
-// });
-
-// document.getElementById('resume').addEventListener('click', function () {
-//     pause = true;
-// });
-// countdown( "ten-countdown", 10, 0 );
-
-// var timersCount = 0;
-// var pause = false; //is timer paused
-
-
-
-// function countTimers() {
-//     timersCount++;
-
-//     var count = 26;
-//     var counter = setInterval(timer, 1000);
-
-//     function timer() {
-//         if (!pause) { //do something if not paused
-//             count = count - 1;
-//             if (count < 0) {
-//                 clearInterval(counter);
-//                 setTimeout(countTimers, 5000); //start count from 26 again
-//                 return;
-//             }
-
-//             document.getElementById("timer").innerHTML = count;
-//         }
-//     }
-
-//     document.getElementById("countTimers").innerHTML = timersCount;
-// }
-
-
 
 
 
 
 // Customization of timer
-
 
 let custom_min = 0        // to get the value entered by the user in min
 let custom_sec = 0;      // to get the value entered by the user in seconds
@@ -757,6 +717,7 @@ function f6()  // when customize button is clicked
 }
 // dark mode
 var drk_mood = 0;
+
 $(document).ready(function () {
     $('#selector').change(function () {
 
@@ -765,13 +726,11 @@ $(document).ready(function () {
         else
             drk_mood = 0; // 0 : dark mood absent 
 
-
-
         $('body').toggleClass('bg-dark');
         $('.bkbg').toggleClass('bg-dark');
         $('nav').toggleClass('navbar-dark bg-secondary');
-        $('td').toggleClass('bg-secondary');
-        $('input').toggleClass('bg-secondary');
+        $('td').toggleClass('bg-sec');
+        $('input').toggleClass('bg-sec');
         $('.custom-control-label').toggleClass('text-white');
         $('td').toggleClass('text-white');
         $('input').toggleClass('text-warning');
