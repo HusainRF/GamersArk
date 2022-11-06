@@ -101,6 +101,7 @@ td {
     /* border-radius: 10px; */
 }
 
+
 .fxd {
     margin: 0;
     padding: 0;
@@ -120,6 +121,10 @@ input {
     color: blue;
     margin: 0px;
 
+}
+
+input:hover {
+    border: 2px solid var(--blue);
 }
 
 #kr {
