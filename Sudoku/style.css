@@ -201,3 +201,9 @@ input {
     -moz-box-shadow: 1px 4px 30px 19px rgba(0,0,0,0.14);
     box-shadow: 1px 4px 30px 19px rgba(0,0,0,0.14);
 }
+
+/* bg-secondary */
+
+.bg-sec{
+    background-color: #6c757d;
+}
