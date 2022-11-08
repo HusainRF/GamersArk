@@ -591,10 +591,10 @@ function myKeyPress(e, id) {
             let cl_data = cw_n;
             
             let ok = 0;
-            ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
+            // ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
             
-            //  if( trail[id[0] - '1'][id[1] - '1'] == num_pressed)
-            //  ok = 1;
+             if( trail[id[0] - '1'][id[1] - '1'] == num_pressed)
+             ok = 1;
             user[ rw_n][cw_n] = num_pressed;
             pop_counter++;
             
@@ -614,7 +614,13 @@ function myKeyPress(e, id) {
                 check_right_input[ rw_n][cw_n] = 1;
                 playSound("type");
                 count_tot_input--; // decrease cnt by 1 because right input inserted
-                document.getElementById(id).style.backgroundColor = "white";
+                if(drk_mood === 1){
+                    document.getElementById(id).style.backgroundColor = "#6c757d";
+                }
+                else 
+                    document.getElementById(id).style.backgroundColor = "white";
+    
+
             }
         }
 
