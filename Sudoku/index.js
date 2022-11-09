@@ -676,7 +676,6 @@ $(document).ready(function () {
         $('.bkbg').toggleClass('bg-dark');
         $('nav').toggleClass('navbar-dark bg-secondary');
         $('td').toggleClass('bg-sec');
-        // $('input').toggleClass('bg-sec');
         $('.custom-control-label').toggleClass('text-white');
         $('td').toggleClass('text-white');
         $('input').toggleClass('text-warning');
