@@ -22,7 +22,7 @@
             <a class="navbar-brand nav-GamersArk" href="/cyborg-1.0.0/index.html">GamersArk</a>
 
             <div class="mx-auto text-center  Sudoku-div ">
-                <a class="navbar-brand heading-Sudoku" href="index.html" >Sudoku </a>
+                <a class="navbar-brand heading-Sudoku" href="index.html">Sudoku </a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -34,13 +34,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav  mb-2 mb-lg-0 ms-auto">
                     <!-- dark mode -->
-                    <li class="nav-item ">    
-                   <div class="custom-control custom-switch mr-5 ">
-                   <input type="checkbox" class="custom-control-input" id="selector">
-                   <label class="custom-control-label" for="selector">Dark Mode</label>
-                     </div>
+                    <li class="nav-item ">
+                        <!-- <div class="custom-control custom-switch mr-5 ">
+                            <input type="checkbox" class="custom-control-input" id="selector">
+                            <label class="custom-control-label" for="selector">Dark Mode</label>--->
+                            <div class="icons-darkmood" >
+                                <div id="theme-toggler" class="fas fa-moon"></div>
+                            </div>
+                        <!-- </div> -->
                     </li>
+
                     
+                    
+
+
                     <li class="nav-item">
                         <button type="button" class="btn info_btn " data-bs-toggle="modal" data-bs-target="#hintbtn">
                             <lord-icon src="https://cdn.lordicon.com/njjuilvq.json" trigger="hover" style>
@@ -179,14 +186,14 @@
             <div class="d-flex justify-content-center play-btn  ">
                 <button type="button" class="btn btn-sm m-2 btn-secondary wt " data-bs-toggle="modal"
                     data-bs-target="#knowmore">Know more</button>
- 
+
                 <button type="button" class="btn btn-sm m-2 btn-secondary " onclick=f6()>Customize</button>
             </div>
             <div>
                 <div class="input-group text-center-sm ">
                     <input type="text" class="form-control m-1 w-10 " id="custm_min" placeholder="min">
                     <span class="m-1 wt">:</span>
-                    <input type="text" class="form-control m-1 w-10 " id="custm_sec" placeholder="Sec"> 
+                    <input type="text" class="form-control m-1 w-10 " id="custm_sec" placeholder="Sec">
 
                 </div>
             </div>
@@ -199,7 +206,8 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>This is a unique Feature offered by GamersArk .By modifying the Timer according to your preferences, you can also enhance your Speed and
+                            <p>This is a unique Feature offered by GamersArk .By modifying the Timer according to your
+                                preferences, you can also enhance your Speed and
                                 Accuracy </p>
                         </div>
                         <div class="modal-body">
@@ -392,8 +400,8 @@
     <script src="index.js"></script>
     <script src="find_input_cell.js"></script>
 
-<!-- jsDelivr: -->
-<!-- Latest compiled and minified CSS -->
+    <!-- jsDelivr: -->
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 
     <!-- jQuery library -->

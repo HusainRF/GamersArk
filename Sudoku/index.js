@@ -650,13 +650,32 @@ function f5()   // This function is invoked when the user tries to submit the re
 
 var drk_mood = 0;
 
-$(document).ready(function () {
-    $('#selector').change(function () {
+let themeToggler = document.querySelector('#theme-toggler');
 
-        if (drk_mood == 0)
+themeToggler.onclick = () =>{
+    
+
+       
+        if (drk_mood == 0){
             drk_mood = 1; // 1 : dark mood present 
+            themeToggler.classList.remove('fa-moon');
+            themeToggler.classList.add('fa-sun');
+        }
         else{
             drk_mood = 0; // 0 : dark mood absent 
+            themeToggler.classList.remove('fa-sun' );
+            themeToggler.classList.add('fa-moon' );
+        }
+         
+       let timetoggler =document.getElementById("timer2"); // tmetoggeler for dark mood
+        
+       if(drk_mood == 1){
+            timetoggler.style.backgroundColor = "rgb(33, 37, 41)";
+            timetoggler.style.color = "white";
+        }
+        else {
+            timetoggler.style.backgroundColor = "white";
+            timetoggler.style.color = "black";
         }
 
         for(let trav_row =0 ;trav_row < 9; trav_row++){
@@ -681,9 +700,9 @@ $(document).ready(function () {
         $('input').toggleClass('text-warning');
         $('.wt').toggleClass('text-white');
 
-    });
-});
 
+  
+}
 
 
 //      <!---------------------------Countdown-Timer started-------------------------------/>
@@ -701,7 +720,7 @@ function startTimer(duration, display) {
     var minutes, seconds;
 
     let myinterval = setInterval(myTimer, 1000);
-    display.style.backgroundColor = "white";
+    
     //   console.log(timer);
 
     function myTimer() {
