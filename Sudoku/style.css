@@ -4,6 +4,29 @@ body {
 
 /* nav-bar */
 
+.icons-darkmood  {
+    /* /* padding-top: 2rem; */
+    margin-top: 0.5rem  
+
+}
+ .icons-darkmood{
+    height: 1.8rem;
+    width: 1.8rem;
+    font-size: 1rem;
+    line-height: 1.8rem;
+    background: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 100%;
+    cursor: pointer;
+    margin-right: .5rem; 
+    
+}
+.icons-darkmood:hover{
+    background: #ff9502;
+    color:#fff;
+    transform:scale(1.1);
+}
 .settings {
     font-size: 1.5rem;
     margin-top: 10%;
@@ -101,6 +124,7 @@ td {
     /* border-radius: 10px; */
 }
 
+
 .fxd {
     margin: 0;
     padding: 0;
@@ -120,6 +144,10 @@ input {
     color: blue;
     margin: 0px;
 
+}
+
+input:hover {
+    border: 2px solid var(--blue);
 }
 
 #kr {

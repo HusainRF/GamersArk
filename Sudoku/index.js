@@ -591,10 +591,10 @@ function myKeyPress(e, id) {
             let cl_data = cw_n;
             
             let ok = 0;
-            ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
+            // ok = check(user, rw_data, cl_data, num_pressed);// To check if the no. entered is correct or not
             
-            //  if( trail[id[0] - '1'][id[1] - '1'] == num_pressed)
-            //  ok = 1;
+             if( trail[id[0] - '1'][id[1] - '1'] == num_pressed)
+             ok = 1;
             user[ rw_n][cw_n] = num_pressed;
             pop_counter++;
             
@@ -614,7 +614,13 @@ function myKeyPress(e, id) {
                 check_right_input[ rw_n][cw_n] = 1;
                 playSound("type");
                 count_tot_input--; // decrease cnt by 1 because right input inserted
-                document.getElementById(id).style.backgroundColor = "white";
+                if(drk_mood === 1){
+                    document.getElementById(id).style.backgroundColor = "#6c757d";
+                }
+                else 
+                    document.getElementById(id).style.backgroundColor = "white";
+    
+
             }
         }
 
@@ -644,13 +650,32 @@ function f5()   // This function is invoked when the user tries to submit the re
 
 var drk_mood = 0;
 
-$(document).ready(function () {
-    $('#selector').change(function () {
+let themeToggler = document.querySelector('#theme-toggler');
 
-        if (drk_mood == 0)
+themeToggler.onclick = () =>{
+    
+
+       
+        if (drk_mood == 0){
             drk_mood = 1; // 1 : dark mood present 
+            themeToggler.classList.remove('fa-moon');
+            themeToggler.classList.add('fa-sun');
+        }
         else{
             drk_mood = 0; // 0 : dark mood absent 
+            themeToggler.classList.remove('fa-sun' );
+            themeToggler.classList.add('fa-moon' );
+        }
+         
+       let timetoggler =document.getElementById("timer2"); // tmetoggeler for dark mood
+        
+       if(drk_mood == 1){
+            timetoggler.style.backgroundColor = "rgb(33, 37, 41)";
+            timetoggler.style.color = "white";
+        }
+        else {
+            timetoggler.style.backgroundColor = "white";
+            timetoggler.style.color = "black";
         }
 
         for(let trav_row =0 ;trav_row < 9; trav_row++){
@@ -670,15 +695,14 @@ $(document).ready(function () {
         $('.bkbg').toggleClass('bg-dark');
         $('nav').toggleClass('navbar-dark bg-secondary');
         $('td').toggleClass('bg-sec');
-        // $('input').toggleClass('bg-sec');
         $('.custom-control-label').toggleClass('text-white');
         $('td').toggleClass('text-white');
         $('input').toggleClass('text-warning');
         $('.wt').toggleClass('text-white');
 
-    });
-});
 
+  
+}
 
 
 //      <!---------------------------Countdown-Timer started-------------------------------/>
@@ -696,7 +720,7 @@ function startTimer(duration, display) {
     var minutes, seconds;
 
     let myinterval = setInterval(myTimer, 1000);
-    display.style.backgroundColor = "white";
+    
     //   console.log(timer);
 
     function myTimer() {
